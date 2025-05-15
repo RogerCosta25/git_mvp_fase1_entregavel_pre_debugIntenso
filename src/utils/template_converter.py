@@ -7,7 +7,9 @@ import re
 import sys
 import docx
 import logging
-from typing import Dict, List, Tuple, Any, Set
+from typing import Dict, List, Tuple, Any, Set, Optional, Union, cast
+from docx.document import Document
+from docx.enum.text import WD_UNDERLINE
 
 # Adiciona o diretório pai ao path para importar módulos
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
@@ -15,7 +17,7 @@ from src.utils.logger_config import configurar_logger
 
 logger = configurar_logger()
 
-def converter_template_para_formato_padrao(template_path: str, output_path: str, secoes_conhecidas: Dict[str, Dict[str, str]] = None) -> bool:
+def converter_template_para_formato_padrao(template_path: str, output_path: str, secoes_conhecidas: Optional[Dict[str, Dict[str, str]]] = None) -> bool:
     """
     Converte um template existente para usar o formato padronizado de seções e corrige placeholders fragmentados.
     
@@ -99,7 +101,7 @@ def converter_template_para_formato_padrao(template_path: str, output_path: str,
         logger.error(f"Erro ao converter template: {str(e)}")
         return False
 
-def mapear_secoes(doc: docx.Document, secoes_conhecidas: Dict[str, Dict[str, str]]) -> Dict[str, Dict[str, int]]:
+def mapear_secoes(doc: Document, secoes_conhecidas: Dict[str, Dict[str, str]]) -> Dict[str, Dict[str, int]]:
     """
     Mapeia posições de início e fim de cada seção no documento.
     
@@ -110,7 +112,7 @@ def mapear_secoes(doc: docx.Document, secoes_conhecidas: Dict[str, Dict[str, str
     Returns:
         Dicionário com informações sobre cada seção mapeada
     """
-    secoes_mapeadas = {}
+    secoes_mapeadas: Dict[str, Dict[str, int]] = {}
     
     # Primeiro, verifica se já existem marcadores de seção no documento
     secoes_existentes = identificar_secoes_existentes(doc)
@@ -138,7 +140,7 @@ def mapear_secoes(doc: docx.Document, secoes_conhecidas: Dict[str, Dict[str, str
                     secoes_mapeadas[secao_id]["fim"] = i
     
     # Verifica quais seções têm início e fim definidos
-    secoes_completas = {}
+    secoes_completas: Dict[str, Dict[str, int]] = {}
     for secao_id, posicoes in secoes_mapeadas.items():
         if "inicio" in posicoes and "fim" in posicoes:
             inicio = posicoes["inicio"]
@@ -155,7 +157,7 @@ def mapear_secoes(doc: docx.Document, secoes_conhecidas: Dict[str, Dict[str, str
     
     return secoes_completas
 
-def identificar_secoes_existentes(doc: docx.Document) -> Dict[str, Dict[str, int]]:
+def identificar_secoes_existentes(doc: Document) -> Dict[str, Dict[str, int]]:
     """
     Identifica seções já marcadas no documento.
     
@@ -165,7 +167,7 @@ def identificar_secoes_existentes(doc: docx.Document) -> Dict[str, Dict[str, int
     Returns:
         Dicionário com informações sobre cada seção já marcada
     """
-    secoes = {}
+    secoes: Dict[str, Dict[str, int]] = {}
     inicio_pattern = r'{{[\s]*#[\s]*SECAO[\s_]*([A-Za-z0-9_]+)[\s]*}}'
     fim_pattern = r'{{[\s]*/[\s]*SECAO[\s_]*([A-Za-z0-9_]+)[\s]*}}'
     
@@ -188,7 +190,7 @@ def identificar_secoes_existentes(doc: docx.Document) -> Dict[str, Dict[str, int
     
     return secoes
 
-def inserir_marcadores_secao(doc: docx.Document, secoes_mapeadas: Dict[str, Dict[str, int]]) -> None:
+def inserir_marcadores_secao(doc: Document, secoes_mapeadas: Dict[str, Dict[str, int]]) -> None:
     """
     Insere marcadores de início e fim de seção no documento.
     
@@ -212,7 +214,7 @@ def inserir_marcadores_secao(doc: docx.Document, secoes_mapeadas: Dict[str, Dict
         paragrafo_inicio = doc.paragraphs[inicio]
         paragrafo_inicio_marcador = paragrafo_inicio.insert_paragraph_before(f"{{{{#SECAO_{secao_id}}}}}")
 
-def corrigir_placeholders_fragmentados(doc: docx.Document) -> int:
+def corrigir_placeholders_fragmentados(doc: Document) -> int:
     """
     Detecta e corrige placeholders fragmentados em diferentes runs.
     
@@ -274,7 +276,8 @@ def corrigir_placeholders_fragmentados(doc: docx.Document) -> int:
             
             # Limpa o parágrafo atual
             for _ in range(len(paragrafo.runs)):
-                paragrafo._p.remove(paragrafo.runs[0]._r)
+                if paragrafo.runs and paragrafo._p and paragrafo.runs[0]._r:
+                    paragrafo._p.remove(paragrafo.runs[0]._r)
             
             # Adiciona uma nova run com o texto completo e a formatação original
             nova_run = paragrafo.add_run(texto_completo)
@@ -282,7 +285,14 @@ def corrigir_placeholders_fragmentados(doc: docx.Document) -> int:
             # Aplica a formatação da run modelo
             nova_run.bold = run_modelo.bold
             nova_run.italic = run_modelo.italic
-            nova_run.underline = run_modelo.underline
+            # Tratando especificamente para o caso do underline
+            if run_modelo.underline:
+                if isinstance(run_modelo.underline, bool):
+                    nova_run.underline = run_modelo.underline
+                else:
+                    # Se não for bool, é uma constante WD_UNDERLINE
+                    nova_run.font.underline = run_modelo.underline
+                
             if hasattr(run_modelo.font, 'name') and run_modelo.font.name:
                 nova_run.font.name = run_modelo.font.name
             if hasattr(run_modelo.font, 'size') and run_modelo.font.size:
@@ -294,7 +304,7 @@ def corrigir_placeholders_fragmentados(doc: docx.Document) -> int:
     
     return total_corrigidos
 
-def corrigir_placeholders_malformados(doc: docx.Document) -> int:
+def corrigir_placeholders_malformados(doc: Document) -> int:
     """
     Detecta e corrige placeholders malformados (com chaves abertas/fechadas incorretamente).
     
@@ -337,7 +347,8 @@ def corrigir_placeholders_malformados(doc: docx.Document) -> int:
                 
                 # Limpa o parágrafo atual
                 for _ in range(len(paragrafo.runs)):
-                    paragrafo._p.remove(paragrafo.runs[0]._r)
+                    if paragrafo.runs and paragrafo._p and paragrafo.runs[0]._r:
+                        paragrafo._p.remove(paragrafo.runs[0]._r)
                 
                 # Adiciona o texto corrigido
                 nova_run = paragrafo.add_run(texto_corrigido)
@@ -346,7 +357,14 @@ def corrigir_placeholders_malformados(doc: docx.Document) -> int:
                 if run_modelo:
                     nova_run.bold = run_modelo.bold
                     nova_run.italic = run_modelo.italic
-                    nova_run.underline = run_modelo.underline
+                    # Tratando especificamente para o caso do underline
+                    if run_modelo.underline:
+                        if isinstance(run_modelo.underline, bool):
+                            nova_run.underline = run_modelo.underline
+                        else:
+                            # Se não for bool, é uma constante WD_UNDERLINE
+                            nova_run.font.underline = run_modelo.underline
+                        
                     if hasattr(run_modelo.font, 'name') and run_modelo.font.name:
                         nova_run.font.name = run_modelo.font.name
                     if hasattr(run_modelo.font, 'size') and run_modelo.font.size:

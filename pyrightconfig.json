@@ -1,0 +1,21 @@
+{
+    "include": [
+        "src",
+        "main.py"
+    ],
+    "exclude": [
+        "**/__pycache__"
+    ],
+    "reportMissingImports": true,
+    "reportMissingTypeStubs": false,
+    "pythonVersion": "3.10",
+    "pythonPlatform": "Windows",
+    "executionEnvironments": [
+        {
+            "root": ".",
+            "extraPaths": [
+                "C:\\Users\\Roger\\Documents C\\13. Guilherme Veiga Adv\\02. Automa\u00e7\u00e3o peti\u00e7\u00f5es\\00. Refazendo do ZERO\\01. Cursor AI_refazendo do ZERO\\mvp_fase1_entregavel\\.venv\\Lib\\site-packages"
+            ]
+        }
+    ]
+}

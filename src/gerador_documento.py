@@ -5,6 +5,9 @@ import os
 import sys
 import re
 from datetime import datetime
+from typing import Dict, Any, List, Optional, Union, Set, Tuple, cast
+
+# Importação normal do Document
 from docx import Document
 from docx.shared import Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -26,7 +29,7 @@ class GeradorDocumento:
     Classe responsável pela geração de documentos Word com base em templates.
     """
     
-    def __init__(self, caminho_template=None, repository: TemplateRepository=None):
+    def __init__(self, caminho_template: Optional[str] = None, repository: Optional[TemplateRepository] = None):
         """
         Inicializa o gerador de documentos com repositório de templates.
         Args:
@@ -34,16 +37,16 @@ class GeradorDocumento:
             repository: Instância de TemplateRepository (padrão FileSystemTemplateRepository).
         """
         # Configura repositório de templates
-        if repository:
+        if repository is not None:
             self.repo = repository
         else:
             self.repo = FileSystemTemplateRepository(template_path=caminho_template)
-        self.documento = None
-        self.placeholders_encontrados = set()
+        self.documento: Any = None  # Usando Any para evitar problemas de tipagem
+        self.placeholders_encontrados: Set[str] = set()
         # Inicializa o metadata de placeholders
         self.metadata = TemplateMetadata()
     
-    def carregar_template(self, caminho=None):
+    def carregar_template(self, caminho: Optional[str] = None) -> Any:
         """
         Carrega o template Word.
         
@@ -59,7 +62,7 @@ class GeradorDocumento:
         """
         # Atualiza caminho no repositório se fornecido
         if caminho and hasattr(self.repo, 'template_path'):
-            self.repo.template_path = caminho
+            setattr(self.repo, 'template_path', caminho)
         try:
             caminho_corrente = getattr(self.repo, 'template_path', None)
             logger.info(f"Carregando template: {caminho_corrente}")
@@ -70,7 +73,7 @@ class GeradorDocumento:
             logger.error(f"Erro ao carregar template: {e}")
             raise TemplateError(f"Erro ao carregar template: {e}")
     
-    def identificar_placeholders(self):
+    def identificar_placeholders(self) -> Set[str]:
         """
         Identifica todos os placeholders no documento.
         
@@ -80,6 +83,9 @@ class GeradorDocumento:
         if not self.documento:
             self.carregar_template()
         
+        if self.documento is None:
+            raise TemplateError("Documento não foi carregado corretamente")
+            
         self.placeholders_encontrados = set()
         pattern = r'\{\{([^}]+)\}\}'
         
@@ -105,7 +111,7 @@ class GeradorDocumento:
         logger.info(f"Placeholders encontrados: {len(self.placeholders_encontrados)}")
         return self.placeholders_encontrados
     
-    def validar_placeholders(self):
+    def validar_placeholders(self) -> None:
         """
         Valida se os placeholders encontrados no template têm metadata e vice-versa.
         """
@@ -126,7 +132,7 @@ class GeradorDocumento:
                 f"sem metadata: {missing_in_metadata}, sem uso: {missing_in_template}"
             )
     
-    def substituir_placeholders(self, dados, secoes_ativas=None):
+    def substituir_placeholders(self, dados: Dict[str, Any], secoes_ativas: Optional[List[str]] = None) -> Any:
         """
         Substitui os placeholders no documento pelos valores dos dados.
         
@@ -142,8 +148,11 @@ class GeradorDocumento:
         """
         if not self.documento:
             self.carregar_template()
+            
+        if self.documento is None:
+            raise TemplateError("Documento não foi carregado corretamente")
         
-        if not secoes_ativas:
+        if secoes_ativas is None:
             secoes_ativas = []
         
         try:
@@ -166,7 +175,7 @@ class GeradorDocumento:
             logger.error(f"Erro ao substituir placeholders: {str(e)}")
             raise SubstituicaoError(f"Erro ao substituir placeholders: {str(e)}")
     
-    def _substituir_em_paragrafos(self, dados, secoes_ativas):
+    def _substituir_em_paragrafos(self, dados: Dict[str, Any], secoes_ativas: List[str]) -> None:
         """
         Substitui placeholders em parágrafos.
         
@@ -174,6 +183,9 @@ class GeradorDocumento:
             dados: Dicionário com os valores para substituição.
             secoes_ativas: Lista de IDs das seções que devem estar ativas.
         """
+        if self.documento is None:
+            raise TemplateError("Documento não foi carregado corretamente")
+            
         pattern = r'\{\{([^}]+)\}\}'
         paragrafos_substituidos = 0
         
@@ -203,7 +215,7 @@ class GeradorDocumento:
         
         logger.debug(f"Parágrafos processados: {paragrafos_substituidos}")
     
-    def _substituir_em_tabelas(self, dados, secoes_ativas):
+    def _substituir_em_tabelas(self, dados: Dict[str, Any], secoes_ativas: List[str]) -> None:
         """
         Substitui placeholders em tabelas.
         
@@ -211,6 +223,9 @@ class GeradorDocumento:
             dados: Dicionário com os valores para substituição.
             secoes_ativas: Lista de IDs das seções que devem estar ativas.
         """
+        if self.documento is None:
+            raise TemplateError("Documento não foi carregado corretamente")
+            
         pattern = r'\{\{([^}]+)\}\}'
         celulas_substituidas = 0
         
@@ -243,7 +258,7 @@ class GeradorDocumento:
         
         logger.debug(f"Células de tabelas processadas: {celulas_substituidas}")
     
-    def _identificar_secao_paragrafo(self, texto):
+    def _identificar_secao_paragrafo(self, texto: str) -> Optional[str]:
         """
         Identifica se um parágrafo pertence a uma seção específica.
         No MVP, usamos uma abordagem simples baseada em comentários no texto.
@@ -260,7 +275,7 @@ class GeradorDocumento:
             return match.group(1)
         return None
     
-    def _obter_valor_substituicao(self, placeholder, dados):
+    def _obter_valor_substituicao(self, placeholder: str, dados: Dict[str, Any]) -> Any:
         """
         Obtém o valor para substituição de um placeholder.
         
@@ -283,7 +298,7 @@ class GeradorDocumento:
         logger.warning(f"Placeholder não definido no d_template: {placeholder}")
         return f"{{DADO NÃO ENCONTRADO: {placeholder}}}"
     
-    def _formatar_valor(self, valor):
+    def _formatar_valor(self, valor: Any) -> str:
         """
         Formata um valor de acordo com seu tipo para ser incluído no documento.
         
@@ -326,7 +341,7 @@ class GeradorDocumento:
         # Para outros tipos, converte para string
         return str(valor)
     
-    def salvar_documento(self, caminho_saida=None):
+    def salvar_documento(self, caminho_saida: Optional[str] = None) -> str:
         """
         Salva o documento processado.
         

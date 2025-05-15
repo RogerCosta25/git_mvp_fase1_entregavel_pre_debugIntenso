@@ -1,98 +1,103 @@
 """
-Exceções personalizadas para o sistema de peticionamento.
-Todas as exceções específicas do sistema derivam da classe base PeticionamentoError.
+Exceções customizadas para o sistema de peticionamento.
 """
 
-class PeticionamentoError(Exception):
-    """Classe base para todas as exceções do sistema de peticionamento."""
+class BaseError(Exception):
+    """Classe base para exceções do sistema."""
     pass
 
-# Exceções relacionadas a templates
-class TemplateError(PeticionamentoError):
+class ArquivoNaoEncontradoError(BaseError):
+    """Arquivo não encontrado."""
+    pass
+
+class DadosInvalidosError(BaseError):
+    """Dados inválidos."""
+    pass
+
+class ConversaoError(BaseError):
+    """Erro na conversão de dados."""
+    pass
+
+class TemplateError(BaseError):
     """Erro base para problemas relacionados a templates."""
     pass
 
-class TemplateNaoEncontradoError(TemplateError):
-    """Erro levantado quando um template solicitado não foi encontrado."""
+class SubstituicaoError(BaseError):
+    """Erro na substituição de placeholders."""
     pass
 
-class TemplateInvalidoError(TemplateError):
-    """Erro levantado quando um template é considerado inválido."""
+class TemplateNaoEncontradoError(BaseError):
+    """Template não encontrado."""
     pass
 
-class VersaoNaoEncontradaError(TemplateError):
-    """Erro levantado quando uma versão específica de um template não foi encontrada."""
+class TemplateInvalidoError(BaseError):
+    """Template inválido."""
     pass
 
-class ArmazenamentoError(PeticionamentoError):
-    """Erro levantado quando ocorre um problema ao armazenar dados."""
+class VersaoNaoEncontradaError(BaseError):
+    """Versão do template não encontrada."""
     pass
 
-class SegurancaError(PeticionamentoError):
-    """Erro levantado quando uma operação viola restrições de segurança."""
+class ArmazenamentoError(BaseError):
+    """Erro de armazenamento."""
     pass
 
-# Exceções relacionadas a arquivos
-class ArquivoError(PeticionamentoError):
-    """Erro base para problemas relacionados a arquivos."""
+class SegurancaError(BaseError):
+    """Violação de segurança."""
     pass
 
-class ArquivoNaoEncontradoError(ArquivoError):
-    """Erro levantado quando um arquivo solicitado não foi encontrado."""
+class MetadataError(BaseError):
+    """Erro relacionado aos metadados."""
     pass
 
-class FormatoArquivoInvalidoError(ArquivoError):
+class FormatoArquivoInvalidoError(BaseError):
     """Erro levantado quando o formato de um arquivo é inválido."""
     pass
 
 # Exceções relacionadas a regras e validações
-class RegraError(PeticionamentoError):
+class RegraError(BaseError):
     """Erro base para problemas relacionados a regras e validações."""
     pass
 
-class RegraInvalidaError(RegraError):
-    """Erro levantado quando uma regra é considerada inválida."""
+class RegraValidacaoError(RegraError):
+    """Erro levantado quando uma validação de regra falha."""
     pass
 
-class AvaliacaoRegraError(RegraError):
-    """Erro levantado quando ocorre um problema ao avaliar uma regra."""
+class RegraInvalidaError(RegraError):
+    """Erro levantado quando uma regra é inválida."""
     pass
 
 # Exceções relacionadas a campos
-class CampoError(PeticionamentoError):
+class CampoError(BaseError):
     """Erro base para problemas relacionados a campos do documento."""
     pass
 
 class CampoInvalidoError(CampoError):
-    """Erro levantado quando um campo é considerado inválido."""
+    """Erro levantado quando um campo é inválido."""
     pass
 
 class CampoNaoEncontradoError(CampoError):
-    """Erro levantado quando um campo não foi encontrado."""
+    """Erro levantado quando um campo solicitado não foi encontrado."""
     pass
 
 # Exceções relacionadas a configuração
-class ConfiguracaoError(PeticionamentoError):
+class ConfiguracaoError(BaseError):
     """Erro base para problemas relacionados a configuração."""
     pass
 
-class DadosError(PeticionamentoError):
+class DadosError(BaseError):
     """Erros relacionados aos dados de entrada."""
-    pass
-
-class DadosInvalidosError(DadosError):
-    """Dados inválidos ou mal formatados."""
     pass
 
 class CampoObrigatorioError(DadosError):
     """Campo obrigatório está ausente."""
     pass
 
-class RegrasError(PeticionamentoError):
+class RegrasError(BaseError):
     """Erros relacionados às regras de negócio."""
     pass
 
-class DocumentoError(PeticionamentoError):
+class DocumentoError(BaseError):
     """Erros relacionados à geração de documento."""
     pass 
 

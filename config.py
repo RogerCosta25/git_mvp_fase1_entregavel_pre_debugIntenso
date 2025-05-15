@@ -1,5 +1,5 @@
 """
-Configurações do sistema.
+Configurações globais do sistema de peticionamento.
 """
 import os
 from pathlib import Path
@@ -50,6 +50,9 @@ CSV_SEPARATOR = ";"
 # Para uso com o processador CSV (legado)
 ENTREVISTAS_CSV = os.path.join(BASE_DIR, "dados", "dados.csv")
 DEFINICAO_CAMPOS_CSV = CAMPOS_CSV
+
+# Arquivos de metadados
+TEMPLATE_METADATA_CSV = os.path.join(CAMPOS_DEFINICAO_DIR, "template_metadata.csv")
 
 # Criar diretórios necessários se não existirem
 os.makedirs(OUTPUT_DIR, exist_ok=True)

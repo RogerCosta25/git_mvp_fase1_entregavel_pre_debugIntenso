@@ -1,0 +1,9 @@
+{
+    "pythonPath": ".venv\\Scripts\\python.exe",
+    "pylance": {
+        "enabled": true,
+        "extraPaths": [
+            ".venv\\Lib\\site-packages"
+        ]
+    }
+}

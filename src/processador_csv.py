@@ -7,6 +7,7 @@ import pandas as pd
 import csv
 import re
 from datetime import datetime
+from typing import Dict, Any, List, Optional, Hashable # <--- ADICIONADO Hashable
 
 # Adiciona o diretório pai ao path para importar módulos
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -23,398 +24,254 @@ class ProcessadorCSV:
     Classe responsável por carregar e processar arquivos CSV de entrevistas.
     """
     
-    def __init__(self, modo_estrito=None):
-        """
-        Inicializa o processador CSV.
-        
-        Args:
-            modo_estrito: Se True, lança exceção em caso de dados inválidos.
-                         Se None, usa o valor de config.MODO_ESTRITO.
-        """
+    def __init__(self, modo_estrito: Optional[bool] = None):
         self.modo_estrito = modo_estrito if modo_estrito is not None else config.MODO_ESTRITO
-        self.campos_definicao = None
+        self.campos_definicao: Dict[str, Dict[str, Any]] = {}
         self._carregar_definicao_campos()
     
     def _carregar_definicao_campos(self):
-        """
-        Carrega a definição dos campos do CSV para validação.
-        """
+        # ... (código como na sua última versão, garantindo que self.campos_definicao é sempre um dict)
         try:
             if os.path.exists(config.DEFINICAO_CAMPOS_CSV):
-                # Tenta primeiro com o separador padrão
                 separador = config.CSV_SEPARATOR
                 try:
                     df_definicao = pd.read_csv(
                         config.DEFINICAO_CAMPOS_CSV, 
                         sep=separador, 
-                        encoding='utf-8'
+                        encoding='utf-8-sig'
                     )
-                    # Verifica se a leitura resultou em uma única coluna (separador incorreto)
-                    if df_definicao.shape[1] <= 1:
-                        # Tenta com vírgula
+                    if df_definicao.shape[1] <= 1 and separador != ',':
                         df_definicao = pd.read_csv(
                             config.DEFINICAO_CAMPOS_CSV, 
                             sep=",", 
-                            encoding='utf-8'
+                            encoding='utf-8-sig'
                         )
                 except Exception:
-                    # Tenta com detecção automática
                     df_definicao = pd.read_csv(
                         config.DEFINICAO_CAMPOS_CSV, 
                         sep=None, 
                         engine='python', 
-                        encoding='utf-8'
+                        encoding='utf-8-sig'
                     )
                 
-                # Cria o dicionário de definições dos campos
-                # Campo 'nome_campo' pode estar com minúsculas ou maiúsculas
-                nome_campo_col = 'nome_campo'
-                if 'nome_campo' not in df_definicao.columns and 'NOME_CAMPO' in df_definicao.columns:
-                    nome_campo_col = 'NOME_CAMPO'
-                    
-                self.campos_definicao = {}
-                for _, row in df_definicao.iterrows():
-                    if nome_campo_col in row:
-                        self.campos_definicao[row[nome_campo_col]] = {
-                            'tipo': row.get('tipo', 'texto'),
-                            'obrigatorio': row.get('obrigatorio', 'N') == 'S'
-                        }
-                
-                logger.info(f"Definição de campos carregada: {len(self.campos_definicao)} campos")
+                nome_campo_col = next((col for col in ['nome_campo', 'NOME_CAMPO'] if col in df_definicao.columns), None)
+                tipo_col = next((col for col in ['tipo_dado_programacao', 'tipo'] if col in df_definicao.columns), 'tipo_dado_programacao')
+                obrigatorio_col = next((col for col in ['obrigatorio_quando_ativo', 'obrigatorio'] if col in df_definicao.columns), 'obrigatorio_quando_ativo')
+
+                if nome_campo_col:
+                    temp_campos_definicao = {}
+                    for _, row in df_definicao.iterrows():
+                        nome_campo_val = row.get(nome_campo_col)
+                        if pd.notna(nome_campo_val):
+                            temp_campos_definicao[str(nome_campo_val)] = {
+                                'tipo': str(row.get(tipo_col, 'texto')).lower(),
+                                'obrigatorio': str(row.get(obrigatorio_col, 'N')).strip().lower() in ['s', 'sim', 'true', '1']
+                            }
+                    self.campos_definicao = temp_campos_definicao
+                    logger.info(f"Definição de campos carregada: {len(self.campos_definicao)} campos")
+                else:
+                    logger.warning(f"Coluna 'nome_campo' (ou 'NOME_CAMPO') não encontrada em {config.DEFINICAO_CAMPOS_CSV}.")
+                    self.campos_definicao = {}
             else:
                 logger.warning(f"Arquivo de definição de campos não encontrado: {config.DEFINICAO_CAMPOS_CSV}")
                 self.campos_definicao = {}
         except Exception as e:
-            logger.error(f"Erro ao carregar definição de campos: {str(e)}")
+            logger.error(f"Erro ao carregar definição de campos: {str(e)}", exc_info=True)
             self.campos_definicao = {}
 
-    def _detectar_separador(self, caminho_arquivo, separador=None):
-        """
-        Detecta o separador do arquivo CSV usando csv.Sniffer.
-        
-        Args:
-            caminho_arquivo: Caminho para o arquivo CSV.
-            separador: Separador explicitamente definido (se houver).
-            
-        Returns:
-            Separador detectado ou o separador explicitamente definido.
-        """
-        # Se um separador foi explicitamente definido, usa-o
+    def _detectar_separador(self, caminho_arquivo: str, separador: Optional[str] = None) -> str:
         if separador is not None:
             return separador
-            
         try:
-            with open(caminho_arquivo, 'r', encoding='utf-8') as f:
-                # Lê uma amostra do arquivo (primeiras linhas)
+            with open(caminho_arquivo, 'r', encoding='utf-8-sig') as f:
                 amostra = f.read(4096)
-                # Se a amostra é muito curta, lê um pouco mais
-                if len(amostra) < 100 and not f.closed:
-                    amostra += f.read(4096)
-                
-                sniffer = csv.Sniffer()
-                # Detecta o dialeto (que inclui o separador)
-                dialect = sniffer.sniff(amostra)
-                separador_detectado = dialect.delimiter
-                logger.info(f"Separador detectado pelo Sniffer: '{separador_detectado}'")
-                return separador_detectado
+            sniffer = csv.Sniffer()
+            dialect = sniffer.sniff(amostra, delimiters=',;\t|') 
+            logger.info(f"Separador detectado pelo Sniffer: '{dialect.delimiter}'")
+            return dialect.delimiter
         except csv.Error as e:
-            logger.warning(f"Não foi possível detectar o separador automaticamente: {str(e)}")
-            
-            # Tenta identificar o separador mais provável inspecionando a primeira linha
-            with open(caminho_arquivo, 'r', encoding='utf-8') as f:
-                primeira_linha = f.readline().strip()
+            logger.warning(f"Sniffer não pôde determinar o delimitador: {str(e)}. Tentando contagem manual.")
+            try:
+                with open(caminho_arquivo, 'r', encoding='utf-8-sig') as f:
+                    primeira_linha = f.readline().strip()
                 
-                # Conta ocorrências de possíveis separadores
-                separadores_comuns = [',', ';', '\t', '|']
-                contagem = {sep: primeira_linha.count(sep) for sep in separadores_comuns}
+                separadores_comuns_str = ';,|\t|' # String de delimitadores para iteração
+                contagem: Dict[str, int] = {sep_cand: primeira_linha.count(sep_cand) for sep_cand in separadores_comuns_str}
                 
-                # Seleciona o separador com mais ocorrências
-                if max(contagem.values()) > 0:
-                    separador_mais_frequente = max(contagem.items(), key=lambda x: x[1])[0]
-                    logger.info(f"Usando separador mais frequente: '{separador_mais_frequente}'")
+                if any(v > 0 for v in contagem.values()):
+                    # CORREÇÃO para max: Usar items() para obter pares chave-valor e então pegar a chave.
+                    # Ou, mais simples, iterar sobre as chaves do dicionário se 'key' espera uma função que opera na chave.
+                    # A forma `max(contagem, key=contagem.get)` é idiomática.
+                    # O Pylance pode estar confuso com a tipagem de `contagem.get`.
+                    # Vamos tentar ser mais explícitos ou usar uma alternativa se o Pylance insistir.
+                    # Uma forma alternativa, embora mais verbosa:
+                    # max_count = -1
+                    # separador_mais_frequente = config.CSV_SEPARATOR # Default
+                    # for sep_cand, count_val in contagem.items():
+                    #     if count_val > max_count:
+                    #         max_count = count_val
+                    #         separador_mais_frequente = sep_cand
+                    # if max_count == 0: # Nenhum dos separadores comuns foi encontrado mais de uma vez
+                    #      logger.warning(f"Nenhum separador comum dominante. Usando padrão: '{config.CSV_SEPARATOR}'")
+                    #      return config.CSV_SEPARATOR
+                    
+                    # Tentando a forma idiomática novamente, Pylance pode precisar de mais contexto ou uma versão diferente.
+                    # Se o erro persistir, a alternativa acima pode ser usada.
+                    separador_mais_frequente = max(contagem, key=lambda k: contagem[k]) # Lambda explícito para o get
+                    logger.info(f"Usando separador mais frequente da primeira linha: '{separador_mais_frequente}'")
                     return separador_mais_frequente
-            
-            # Se não conseguir determinar, usa o padrão
-            logger.info(f"Usando separador padrão: '{config.CSV_SEPARATOR}'")
-            return config.CSV_SEPARATOR
-        except Exception as e:
-            logger.warning(f"Erro ao detectar separador: {str(e)}")
-            return config.CSV_SEPARATOR
-    
-    def limpar_e_converter_float(self, valor_str):
-        """
-        Limpa e converte strings numéricas para float, suportando diferentes formatos.
-        
-        Args:
-            valor_str: String com valor numérico em vários formatos possíveis.
-            
-        Returns:
-            Float convertido ou o valor original se não for possível converter.
-        """
-        if not isinstance(valor_str, str):
-            # Se já for número, retorna (ou converte para float se necessário)
-            return float(valor_str) if valor_str is not None else 0.0
-
-        # Remove espaços extras
-        valor_str = valor_str.strip()
-        # Remove símbolos de moeda comuns
-        valor_str = re.sub(r"[R$€£]", "", valor_str).strip()
-        
-        # Salva o original para log em caso de erro
-        original = valor_str
-        
-        try:
-            # Caso simples: número inteiro ou decimal com ponto
-            if re.match(r'^\d+$', valor_str):
-                return int(valor_str)
-            if re.match(r'^\d+\.\d+$', valor_str):
-                return float(valor_str)
-            
-            # Para números com vírgula como decimal (formato brasileiro)
-            if ',' in valor_str:
-                # Remove pontos usados como separador de milhar
-                if '.' in valor_str:
-                    valor_limpo = valor_str.replace('.', '')
                 else:
-                    valor_limpo = valor_str
-                # Troca a vírgula decimal por ponto
-                valor_limpo = valor_limpo.replace(',', '.')
-            # Se não há vírgula, assume que ponto é decimal (se houver)
-            else:
-                valor_limpo = valor_str
-
-            # Remove espaços novamente após substituições
-            valor_limpo = valor_limpo.strip()
-
-            # Tenta a conversão final
-            if valor_limpo:  # Evita float('')
-                return float(valor_limpo)
-            else:
-                return 0.0
-        except ValueError:
-            logger.warning(f"Não foi possível converter '{original}' para float.")
-            return valor_str  # Retorna o valor original em caso de falha
+                    logger.warning("Nenhum separador comum encontrado na primeira linha. Usando padrão de config.")
+                    return config.CSV_SEPARATOR
+            except Exception as e_inner:
+                logger.error(f"Erro ao tentar contagem manual de separadores: {e_inner}. Usando padrão de config.")
+                return config.CSV_SEPARATOR
+        except Exception as e_outer:
+            logger.error(f"Erro inesperado na detecção de separador: {e_outer}. Usando padrão de config.")
+            return config.CSV_SEPARATOR
     
-    def carregar_arquivo(self, caminho_arquivo=None, separador=None):
-        """
-        Carrega um arquivo CSV e converte para uma lista de dicionários.
-        
-        Args:
-            caminho_arquivo: Caminho para o arquivo CSV. Se None, usa config.ENTREVISTAS_CSV.
-            separador: Separador do CSV. Se None, usa config.CSV_SEPARATOR.
-            
-        Returns:
-            Lista de dicionários, cada um representando uma linha do CSV.
-            
-        Raises:
-            ArquivoNaoEncontradoError: Se o arquivo não for encontrado.
-            FormatoArquivoInvalidoError: Se o formato do arquivo for inválido.
-        """
-        caminho_arquivo = caminho_arquivo or config.ENTREVISTAS_CSV
-        
-        if not os.path.exists(caminho_arquivo):
-            logger.error(f"Arquivo não encontrado: {caminho_arquivo}")
-            raise ArquivoNaoEncontradoError(f"Arquivo não encontrado: {caminho_arquivo}")
+    def limpar_e_converter_float(self, valor_str: Any) -> Any:
+        # ... (código como na sua última versão) ...
+        if not isinstance(valor_str, str):
+            try:
+                return float(valor_str) if valor_str is not None else 0.0
+            except (ValueError, TypeError):
+                 logger.warning(f"Valor não string '{valor_str}' não pôde ser convertido para float diretamente.")
+                 return valor_str 
+
+        original = valor_str
+        valor_limpo = valor_str.strip()
+        valor_limpo = re.sub(r"[R$\s]", "", valor_limpo) 
         
         try:
-            logger.info(f"Carregando arquivo CSV: {caminho_arquivo}")
-            
-            # Detecta o separador automaticamente se não for especificado
-            separador_final = self._detectar_separador(caminho_arquivo, separador)
+            if not valor_limpo: return 0.0 
+            if ',' in valor_limpo and '.' in valor_limpo:
+                if valor_limpo.rfind('.') < valor_limpo.rfind(','): 
+                    valor_processado = valor_limpo.replace('.', '').replace(',', '.')
+                else: 
+                    valor_processado = valor_limpo.replace(',', '')
+            elif ',' in valor_limpo: 
+                valor_processado = valor_limpo.replace(',', '.')
+            else: 
+                valor_processado = valor_limpo
+            return float(valor_processado)
+        except ValueError:
+            logger.warning(f"Não foi possível converter '{original}' para float após limpeza e processamento.")
+            return original
+    
+    def carregar_arquivo(self, caminho_arquivo: Optional[str] = None, separador: Optional[str] = None) -> List[Dict[str, Any]]:
+        caminho_arquivo_final = caminho_arquivo or config.ENTREVISTAS_CSV
+        if not os.path.exists(caminho_arquivo_final):
+            logger.error(f"Arquivo CSV não encontrado: {caminho_arquivo_final}")
+            raise ArquivoNaoEncontradoError(f"Arquivo CSV não encontrado: {caminho_arquivo_final}")
+        
+        try:
+            logger.info(f"Carregando arquivo CSV: {caminho_arquivo_final}")
+            separador_final = self._detectar_separador(caminho_arquivo_final, separador)
             logger.info(f"Usando separador '{separador_final}' para ler o arquivo CSV")
             
-            # Tenta ler o arquivo com o separador detectado
-            try:
-                df = pd.read_csv(caminho_arquivo, sep=separador_final, encoding='utf-8')
-            except Exception as e:
-                logger.warning(f"Erro ao ler CSV com separador '{separador_final}': {str(e)}")
-                # Tenta com detecção automática como fallback
-                df = pd.read_csv(caminho_arquivo, sep=None, engine='python', encoding='utf-8')
+            df = pd.read_csv(caminho_arquivo_final, sep=separador_final, encoding='utf-8-sig', dtype=str, keep_default_na=False, na_filter=False)
             
-            # Verificação pós-leitura para validar se o parsing foi correto
-            if df.shape[1] == 1:
-                # Se só temos uma coluna, o separador está errado
-                logger.warning(f"Possível problema de separador: leu apenas uma coluna com '{separador_final}'")
-                
-                # Tenta com cada separador comum até encontrar um que funcione
-                for sep in [',', ';', '\t', '|']:
-                    try:
-                        temp_df = pd.read_csv(caminho_arquivo, sep=sep, encoding='utf-8')
-                        if temp_df.shape[1] > 1:
-                            df = temp_df
-                            logger.info(f"Leitura bem-sucedida com separador '{sep}': {df.shape[1]} colunas")
-                            break
-                    except Exception:
-                        continue
-                
-                # Se ainda tiver apenas uma coluna, tenta com engine='python'
-                if df.shape[1] == 1:
-                    logger.info("Tentando leitura com separador automático do pandas")
-                    df = pd.read_csv(caminho_arquivo, sep=None, engine='python', encoding='utf-8')
-                    
-                    if df.shape[1] > 1:
-                        logger.info(f"Leitura bem-sucedida com separador automático: {df.shape[1]} colunas")
-                    else:
-                        logger.warning("Mesmo com detecção automática, só foi possível ler uma coluna")
+            if df.empty:
+                logger.warning(f"Arquivo CSV '{caminho_arquivo_final}' está vazio.")
+                return []
             
             logger.info(f"Arquivo CSV carregado: {len(df)} registros com {df.shape[1]} colunas")
             
-            # Converte DataFrame para lista de dicionários
-            registros = df.to_dict(orient='records')
+            # CORREÇÃO de tipo para a chamada de _processar_registros
+            # df.to_dict(orient='records') retorna List[Dict[str, Any]] porque os valores são mistos inicialmente.
+            # Mas como lemos com dtype=str, os valores serão strings.
+            # O Pylance pode inferir Any para os valores se não for explícito.
+            # Vamos garantir que as chaves são strings.
+            registros_lidos: List[Dict[str, str]] = []
+            for record in df.to_dict(orient='records'):
+                registros_lidos.append({str(k): str(v) for k, v in record.items()})
+
+            registros_processados = self._processar_registros(registros_lidos) # <--- Linha 177
             
-            # Valida e processa os registros
-            registros_processados = self._processar_registros(registros)
-            logger.info(f"Dados carregados para o contexto: {list(registros_processados[0].keys())}")
-            
+            if registros_processados:
+                 logger.info(f"Amostra das chaves do primeiro registro processado: {list(registros_processados[0].keys())[:10]}")
             return registros_processados
-            
-        except pd.errors.ParserError as e:
-            logger.error(f"Erro ao parsear CSV: {str(e)}")
-            raise FormatoArquivoInvalidoError(f"Formato do arquivo CSV inválido: {str(e)}")
         except Exception as e:
-            logger.error(f"Erro ao processar CSV: {str(e)}")
+            logger.error(f"Erro crítico ao carregar ou processar CSV '{caminho_arquivo_final}': {str(e)}", exc_info=True)
             raise FormatoArquivoInvalidoError(f"Erro ao processar CSV: {str(e)}")
     
-    def _processar_registros(self, registros):
-        """
-        Processa e valida os registros do CSV.
-        
-        Args:
-            registros: Lista de dicionários representando registros do CSV.
-            
-        Returns:
-            Lista de dicionários processados e validados.
-        """
+    # Assinatura de _processar_registros já espera List[Dict[str, str]]
+    # e retorna List[Dict[str, Any]], o que está correto.
+    def _processar_registros(self, registros: List[Dict[str, str]]) -> List[Dict[str, Any]]:
+        # ... (código como na sua última versão) ...
         resultados = []
-        
-        for i, registro in enumerate(registros):
+        for i, registro_linha_str in enumerate(registros):
+            registro_convertido_atual: Dict[str, Any] = {}
             try:
-                # Processa valores nulos
-                registro_processado = self._processar_valores_nulos(registro)
-                
-                # Valida tipos de dados
-                if self.campos_definicao:
-                    registro_processado = self._validar_tipos_dados(registro_processado)
-                
-                resultados.append(registro_processado)
-                logger.debug(f"Registro {i+1} processado com sucesso")
-            except Exception as e:
-                logger.warning(f"Erro no registro {i+1}: {str(e)}")
-                if self.modo_estrito:
-                    raise DadosInvalidosError(f"Registro {i+1} inválido: {str(e)}")
-                else:
-                    # Em modo não-estrito, adiciona registro original mesmo com erros
-                    resultados.append(registro)
-                    logger.warning(f"Registro {i+1} adicionado com erros (modo não-estrito)")
-        
-        return resultados
-    
-    def _processar_valores_nulos(self, registro):
-        """
-        Processa valores nulos no registro.
-        
-        Args:
-            registro: Dicionário representando um registro do CSV.
-            
-        Returns:
-            Dicionário com valores nulos tratados.
-        """
-        resultado = {}
-        
-        for chave, valor in registro.items():
-            # Verifica se o valor é NaN ou None
-            if pd.isna(valor):
-                # Se temos definição do campo e sabemos seu tipo
-                if self.campos_definicao and chave in self.campos_definicao:
-                    tipo = self.campos_definicao[chave]['tipo'].lower()
+                for chave_original, valor_original_str in registro_linha_str.items():
+                    chave_campo = str(chave_original).strip() 
                     
-                    # Trata de acordo com o tipo
-                    if tipo in ['int', 'inteiro', 'integer']:
-                        resultado[chave] = 0
-                    elif tipo in ['float', 'decimal', 'numero', 'number']:
-                        resultado[chave] = 0.0
-                    elif tipo in ['data', 'date']:
-                        resultado[chave] = None
-                    else:  # texto ou outro tipo
-                        resultado[chave] = ""
-                else:
-                    # Se não temos definição, assume string vazia para campos de texto
-                    if 'data' in chave.lower():
-                        resultado[chave] = None
-                    elif any(termo in chave.lower() for termo in ['valor', 'numero', 'bruto', 'qtd']):
-                        resultado[chave] = 0.0
-                    else:
-                        resultado[chave] = ""
-            else:
-                resultado[chave] = valor
+                    valor_str_processar = "" 
+                    if valor_original_str is not None:
+                        temp_val = str(valor_original_str).strip()
+                        if temp_val.lower() not in ['nan', 'none', '<na>']: 
+                            valor_str_processar = temp_val
+                    
+                    registro_convertido_atual[chave_campo] = self._validar_e_converter_valor_individual(chave_campo, valor_str_processar, i)
+                resultados.append(registro_convertido_atual)
+            except DadosInvalidosError as die:
+                logger.warning(f"Erro de dados inválidos no registro {i+1}: {str(die)}. Modo estrito: {self.modo_estrito}")
+                if self.modo_estrito: raise
+                resultados.append(registro_convertido_atual) 
+            except Exception as e_reg_proc:
+                logger.error(f"Erro inesperado ao processar registro {i+1}: {str(e_reg_proc)}", exc_info=True)
+                if self.modo_estrito: raise DadosInvalidosError(f"Erro inesperado no registro {i+1}: {str(e_reg_proc)}")
+                resultados.append(registro_linha_str) 
+        return resultados
+
+    def _validar_e_converter_valor_individual(self, chave: str, valor_str_limpo: str, num_registro: int) -> Any:
+        # ... (código como na sua última versão) ...
+        if not isinstance(self.campos_definicao, dict): 
+            self.campos_definicao = {} 
+
+        definicao = self.campos_definicao.get(chave)
         
-        return resultado
-    
-    def _validar_tipos_dados(self, registro):
-        """
-        Valida os tipos de dados do registro conforme definição.
-        
-        Args:
-            registro: Dicionário representando um registro do CSV.
+        tipo_esperado = 'texto' 
+        obrigatorio = False
+        if definicao:
+            tipo_esperado = definicao.get('tipo', 'texto').lower()
+            obrigatorio = definicao.get('obrigatorio', False)
+
+        if not valor_str_limpo: 
+            if obrigatorio:
+                msg_erro_obr = f"Registro {num_registro+1}: Campo obrigatório '{chave}' está vazio."
+                if self.modo_estrito: raise DadosInvalidosError(msg_erro_obr)
+                logger.warning(msg_erro_obr) 
             
-        Returns:
-            Dicionário com valores convertidos para os tipos corretos.
-        """
-        resultado = {}
-        erros = []
-        
-        for chave, valor in registro.items():
-            # Se não temos definição para o campo, mantém o valor original
-            if chave not in self.campos_definicao:
-                resultado[chave] = valor
-                continue
-            
-            # Verifica se campo obrigatório está preenchido
-            if self.campos_definicao[chave]['obrigatorio'] and (valor is None or valor == ""):
-                erros.append(f"Campo obrigatório não preenchido: {chave}")
-                # Em modo não-estrito, mantém o valor original
-                resultado[chave] = valor
-                continue
-            
-            # Se valor é None ou vazio e não é obrigatório, mantém como está
-            if valor is None or valor == "":
-                resultado[chave] = valor
-                continue
-            
-            # Converte para o tipo correto
-            tipo = self.campos_definicao[chave]['tipo'].lower()
-            try:
-                if tipo in ['int', 'inteiro', 'integer']:
-                    if isinstance(valor, str):
-                        valor_conv = self.limpar_e_converter_float(valor)
-                        resultado[chave] = int(valor_conv) if isinstance(valor_conv, (int, float)) else int(valor)
-                    else:
-                        resultado[chave] = int(valor)
-                elif tipo in ['float', 'decimal', 'numero', 'number']:
-                    if isinstance(valor, str):
-                        resultado[chave] = self.limpar_e_converter_float(valor)
-                    else:
-                        resultado[chave] = float(valor)
-                elif tipo in ['data', 'date']:
-                    # Tenta alguns formatos comuns de data
-                    for fmt in ['%d/%m/%Y', '%Y-%m-%d', '%d-%m-%Y', '%d.%m.%Y']:
-                        try:
-                            resultado[chave] = datetime.strptime(valor, fmt)
-                            break
-                        except ValueError:
-                            continue
-                    else:
-                        # Se nenhum formato funcionar
-                        erros.append(f"Formato de data inválido para o campo {chave}: {valor}")
-                        resultado[chave] = valor
-                else:  # texto ou outro tipo
-                    resultado[chave] = str(valor)
-            except Exception as e:
-                erros.append(f"Erro na conversão do campo {chave}: {str(e)}")
-                resultado[chave] = valor
-        
-        # Em modo estrito, lança exceção se houver erros
-        if erros and self.modo_estrito:
-            raise DadosInvalidosError("\n".join(erros))
-        
-        return resultado 
+            if tipo_esperado in ['int', 'inteiro', 'integer']: return 0
+            if tipo_esperado in ['float', 'decimal', 'numero', 'number', 'moeda', 'dinheiro']: return 0.0
+            if tipo_esperado in ['data', 'date']: return None
+            return "" 
+
+        try:
+            if tipo_esperado in ['int', 'inteiro', 'integer']:
+                val_float = self.limpar_e_converter_float(valor_str_limpo)
+                if isinstance(val_float, (int, float)): return int(val_float)
+                raise ValueError("Valor não pôde ser convertido para numérico antes de int.")
+            elif tipo_esperado in ['float', 'decimal', 'numero', 'number', 'moeda', 'dinheiro']:
+                return self.limpar_e_converter_float(valor_str_limpo)
+            elif tipo_esperado in ['data', 'date']:
+                for fmt in ('%d/%m/%Y', '%Y-%m-%d', '%d-%m-%Y', '%Y/%m/%d', '%d.%m.%Y', '%m/%d/%Y', '%d%m%Y'):
+                    try: return datetime.strptime(valor_str_limpo, fmt).strftime('%d/%m/%Y')
+                    except ValueError: continue
+                raise ValueError(f"Formato de data '{valor_str_limpo}' não reconhecido para campo '{chave}'.")
+            elif tipo_esperado in ['bool', 'booleano', 'logico']:
+                return valor_str_limpo.lower() in ['sim', 'true', '1', 's', 'yes', 'verdadeiro', 'v']
+            else:  
+                return str(valor_str_limpo)
+        except ValueError as e: 
+            msg_erro_conv = f"Registro {num_registro+1}: Erro ao converter campo '{chave}' (valor: '{valor_str_limpo}') para tipo '{tipo_esperado}'. Detalhe: {e}"
+            logger.warning(msg_erro_conv)
+            if self.modo_estrito: raise DadosInvalidosError(msg_erro_conv)
+            return valor_str_limpo 
+        except Exception as e_inesperado: 
+            msg_erro_inesperado = f"Registro {num_registro+1}: Exceção inesperada ao converter campo '{chave}' (valor: '{valor_str_limpo}') para tipo '{tipo_esperado}'. Erro: {e_inesperado}"
+            logger.error(msg_erro_inesperado, exc_info=True)
+            if self.modo_estrito: raise DadosInvalidosError(msg_erro_inesperado)
+            return valor_str_limpo

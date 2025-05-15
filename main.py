@@ -15,7 +15,7 @@ import sys
 import json
 import argparse
 import logging
-from typing import Dict, Any, Optional, List, Union
+from typing import Dict, Any, Optional, List, Union, cast
 
 # Adiciona o diretório atual ao path
 # Garante que o diretório do script seja o primeiro no sys.path para priorizar módulos locais.
@@ -139,13 +139,13 @@ def main() -> int:
     
     # Importa o novo configurador de logger
     try:
-        from src.utils.logger_config import configurar_logger
+        from src.utils.logger_config import configurar_logger as novo_configurar_logger
         nivel_log = "DEBUG" if args.debug else config.LOG_LEVEL
-        logger = configurar_logger(nivel=getattr(logging, nivel_log))
+        # Usando a função configurar_logger diretamente do módulo logger importado
+        configurar_logger(nivel_log)
     except ImportError:
         # Fallback para o logger antigo se o novo não estiver disponível
         nivel_log = "DEBUG" if args.debug else config.LOG_LEVEL
-        logger = logging.getLogger("peticionamento")
         configurar_logger(nivel_log)
     
     logger.info("Sistema de Peticionamento Iniciado.")
@@ -249,7 +249,7 @@ def main() -> int:
             logger.info(f"Utilizando arquivo JSON: {os.path.abspath(fonte_dados_json)}")
             dados_entrevista = carregar_dados_json(fonte_dados_json)
             
-            # Usa o nome base diretamente para JSON
+            # Determina o nome do arquivo de saída
             if not output_path_base.endswith('.docx'):
                 output_path = f"{output_path_base}.docx"
             else:
@@ -274,44 +274,59 @@ def main() -> int:
                 'estatisticas': processador_documento.obter_estatisticas()
             })
             
-            logger.info(f"Documento gerado salvo em: {os.path.abspath(caminho_documento_gerado)}")
+            logger.info(f"Documento salvo em: {os.path.abspath(caminho_documento_gerado)}")
         
-        # Exibe resumo dos documentos gerados
-        print(f"\n--- Resumo do Processamento ---")
-        print(f"Total de documentos gerados: {len(documentos_gerados)}")
-        
+        # Mostra um resumo dos documentos gerados
+        logger.info(f"Processamento concluído. {len(documentos_gerados)} documento(s) gerado(s).")
         for i, doc in enumerate(documentos_gerados):
+            logger.info(f"Documento {i+1}: {os.path.abspath(doc['caminho'])}")
             estatisticas = doc['estatisticas']
-            print(f"\nDocumento {i+1}:")
-            print(f"  Status: {estatisticas.get('status', 'Desconhecido')}")
-            print(f"  Completude: {estatisticas.get('porcentagem_completude', 0):.2f}%")
-            print(f"  Campos encontrados: {estatisticas.get('total_campos_encontrados', 0)}")
-            print(f"  Campos substituídos: {estatisticas.get('total_campos_substituidos', 0)}")
-            print(f"  Campos ausentes: {estatisticas.get('total_campos_ausentes', 0)}")
-            
-            if estatisticas.get('total_campos_obrigatorios_ausentes', 0) > 0:
-                print(f"  ATENÇÃO: {estatisticas.get('total_campos_obrigatorios_ausentes')} campos obrigatórios ausentes!")
-            
-            print(f"  Caminho: {os.path.abspath(doc['caminho'])}")
+            if estatisticas:
+                logger.info(f"  - Status: {estatisticas.get('status', 'N/A')}")
+                logger.info(f"  - Completude: {estatisticas.get('porcentagem_completude', 0):.2f}%")
+                logger.info(f"  - Campos substituídos: {estatisticas.get('total_campos_substituidos', 0)}/{estatisticas.get('total_campos_encontrados', 0)}")
+                
+                # Verifica se há campos obrigatórios ausentes
+                if estatisticas.get('total_campos_obrigatorios_ausentes', 0) > 0:
+                    logger.warning(f"  - ATENÇÃO: {estatisticas.get('total_campos_obrigatorios_ausentes', 0)} campos obrigatórios ausentes!")
         
-        print(f"\nProcessamento concluído!")
-        return 0
+        # Saída para o usuário no terminal
+        print(f"\nProcessamento concluído com sucesso! {len(documentos_gerados)} documento(s) gerado(s):")
+        for i, doc in enumerate(documentos_gerados):
+            print(f"  {i+1}. {os.path.abspath(doc['caminho'])}")
         
-    except (ArquivoNaoEncontradoError, FormatoArquivoInvalidoError,
-            TemplateNaoEncontradoError, ProcessamentoDocumentoError, DadosInvalidosError) as e:
-        # Captura exceções específicas do sistema
-        logger.error(f"Erro específico durante o processamento: {str(e)}", exc_info=True)
+        return 0  # Retorna sucesso
+        
+    except ArquivoNaoEncontradoError as e:
+        logger.error(f"Arquivo não encontrado: {str(e)}")
+        print(f"\nERRO: {str(e)}")
+        return 1
+    except FormatoArquivoInvalidoError as e:
+        logger.error(f"Formato de arquivo inválido: {str(e)}")
+        print(f"\nERRO: {str(e)}")
+        return 1
+    except TemplateNaoEncontradoError as e:
+        logger.error(f"Template não encontrado: {str(e)}")
+        print(f"\nERRO: {str(e)}")
+        return 1
+    except ProcessamentoDocumentoError as e:
+        logger.error(f"Erro no processamento do documento: {str(e)}")
+        print(f"\nERRO: {str(e)}")
+        return 1
+    except DadosInvalidosError as e:
+        logger.error(f"Dados inválidos: {str(e)}")
         print(f"\nERRO: {str(e)}")
         return 1
     except Exception as e:
-        # Captura quaisquer outras exceções não previstas
-        logger.error(f"Erro não tratado e crítico no sistema: {str(e)}", exc_info=True)
-        print(f"\nERRO CRÍTICO E INESPERADO: {str(e)}")
-        print("Consulte os logs para mais detalhes.")
+        logger.exception(f"Erro inesperado: {str(e)}")
+        print(f"\nERRO INESPERADO: {str(e)}")
+        
+        # Em modo debug, mostra o traceback completo
+        if args.debug:
+            import traceback
+            traceback.print_exc()
+            
         return 1
 
 if __name__ == "__main__":
-    # Ponto de entrada do script quando executado diretamente.
-    # sys.exit() garante que o código de saída da função main() seja retornado ao sistema operacional.
-    codigo_saida = main()
-    sys.exit(codigo_saida)
+    sys.exit(main())

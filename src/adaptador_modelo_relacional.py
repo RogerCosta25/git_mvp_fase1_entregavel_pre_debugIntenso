@@ -9,7 +9,7 @@ de forma compatível com o código existente do sistema.
 import os
 import sys
 import pandas as pd
-from typing import Dict, List, Any, Optional, Union, Tuple
+from typing import Dict, List, Any, Optional, Union, Tuple, cast
 
 # Adiciona o diretório pai ao path para importar módulos
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -28,11 +28,12 @@ class AdaptadorModeloRelacional:
         """
         Inicializa o adaptador carregando as tabelas do modelo relacional.
         """
-        self.campos = None
-        self.categorias = None
-        self.regras = None
-        self.tipos = None
-        self.opcoes = None
+        # Inicializa com DataFrames vazios em vez de None
+        self.campos = pd.DataFrame()
+        self.categorias = pd.DataFrame()
+        self.regras = pd.DataFrame()
+        self.tipos = pd.DataFrame()
+        self.opcoes = pd.DataFrame()
         
         # Carrega as tabelas do modelo relacional
         self._carregar_tabelas()
@@ -99,16 +100,16 @@ class AdaptadorModeloRelacional:
             Exception: Se alguma tabela estiver vazia ou com formato inválido.
         """
         # Verifica se as tabelas estão vazias
-        if self.campos is None or len(self.campos) == 0:
+        if len(self.campos) == 0:
             raise Exception("Tabela de campos vazia ou não carregada")
             
-        if self.categorias is None or len(self.categorias) == 0:
+        if len(self.categorias) == 0:
             raise Exception("Tabela de categorias vazia ou não carregada")
             
-        if self.regras is None or len(self.regras) == 0:
+        if len(self.regras) == 0:
             raise Exception("Tabela de regras vazia ou não carregada")
             
-        if self.tipos is None or len(self.tipos) == 0:
+        if len(self.tipos) == 0:
             raise Exception("Tabela de tipos vazia ou não carregada")
         
         # Verifica se as colunas principais existem
@@ -181,10 +182,11 @@ class AdaptadorModeloRelacional:
                 resultado['subcategoria'] = categorias_campo.iloc[0]['subcategoria_1'] if 'subcategoria_1' in categorias_campo.columns else ''
             
             # Adiciona opções de seleção
-            opcoes_campo = self.opcoes[self.opcoes['campo_id'] == campo_id] if 'campo_id' in self.opcoes.columns else pd.DataFrame()
-            if len(opcoes_campo) > 0:
-                opcoes_lista = opcoes_campo['valor'].tolist() if 'valor' in opcoes_campo.columns else []
-                resultado['opcoes_lista_selecao'] = ';'.join(opcoes_lista)
+            if 'campo_id' in self.opcoes.columns:
+                opcoes_campo = self.opcoes[self.opcoes['campo_id'] == campo_id]
+                if len(opcoes_campo) > 0 and 'valor' in opcoes_campo.columns:
+                    opcoes_lista = opcoes_campo['valor'].tolist()
+                    resultado['opcoes_lista_selecao'] = ';'.join(opcoes_lista)
             
             return resultado
         except Exception as e:
@@ -209,7 +211,7 @@ class AdaptadorModeloRelacional:
                 return None
                 
             # Obtém o ID do campo
-            campo_id = campo.iloc[0]['campo_id']
+            campo_id = int(campo.iloc[0]['campo_id'])
             
             # Usa o método de obtenção por ID
             return self.obter_campo_por_id(campo_id)
@@ -239,9 +241,9 @@ class AdaptadorModeloRelacional:
             campo_ids = categorias_filtradas['campo_id'].unique().tolist()
             
             # Obtém informações detalhadas de cada campo
-            resultado = []
+            resultado: List[Dict[str, Any]] = []
             for campo_id in campo_ids:
-                campo = self.obter_campo_por_id(campo_id)
+                campo = self.obter_campo_por_id(int(campo_id))
                 if campo:
                     resultado.append(campo)
             
@@ -268,7 +270,11 @@ class AdaptadorModeloRelacional:
                 return []
                 
             # Converte para lista de dicionários
-            return regras_campo.to_dict('records')
+            # Usamos cast para informar ao Pylance que o retorno é compatível
+            resultado = []
+            for _, row in regras_campo.iterrows():
+                resultado.append(row.to_dict())
+            return resultado
         except Exception as e:
             logger.error(f"Erro ao listar regras para campo ID {campo_id}: {str(e)}")
             return []
@@ -283,7 +289,7 @@ class AdaptadorModeloRelacional:
         try:
             logger.info("Convertendo modelo relacional para formato legado...")
             
-            resultado = {
+            resultado: Dict[str, Any] = {
                 "campos": {},
                 "campos_por_id": {},
                 "campos_por_categoria": {},
@@ -293,28 +299,71 @@ class AdaptadorModeloRelacional:
                 }
             }
             
-            # Processa cada campo
-            for _, row in self.campos.iterrows():
-                campo_id = row['campo_id']
-                campo_detalhado = self.obter_campo_por_id(campo_id)
-                
-                if campo_detalhado and 'nome_campo' in campo_detalhado:
-                    nome_campo = campo_detalhado['nome_campo']
+            # Abordagem mais direta: convertemos o DataFrame inteiro para lista de dicionários
+            campos_lista = []
+            try:
+                # Obtemos os dicionários com a conversão manual
+                for _, row in self.campos.iterrows():
+                    campo_dict = {}
+                    for col_name in self.campos.columns:
+                        campo_dict[col_name] = row[col_name]
+                    campos_lista.append(campo_dict)
+            except Exception as e:
+                logger.error(f"Erro ao converter DataFrame para dicionários: {e}")
+                # Fallback: Tenta a conversão direta como último recurso
+                try:
+                    # Converte coluna por coluna
+                    campos_lista = []
+                    for idx in range(len(self.campos)):
+                        row = self.campos.iloc[idx]
+                        row_dict = {}
+                        for col in self.campos.columns:
+                            val = row[col]
+                            # Evitamos objetos numpy/pandas que possam causar problemas
+                            if pd.api.types.is_scalar(val):
+                                row_dict[col] = val if not pd.isna(val) else None
+                        campos_lista.append(row_dict)
+                except Exception as e2:
+                    logger.error(f"Erro também no fallback: {e2}")
+                    # Se tudo falhar, retorna um dicionário vazio
+                    return resultado
+            
+            # Processa cada registro da lista de dicionários
+            for campo_dict in campos_lista:
+                try:
+                    # Obtém o campo_id com tratamento para valores inválidos
+                    if 'campo_id' in campo_dict and campo_dict['campo_id'] is not None:
+                        # Evita problemas com tipos int64/numpy.int64
+                        campo_id_valor = campo_dict['campo_id']
+                        # Convertemos para um int Python padrão
+                        campo_id = int(campo_id_valor)
+                    else:
+                        logger.warning(f"Campo id não encontrado ou inválido")
+                        continue
                     
-                    # Adiciona ao mapeamento por nome
-                    resultado["campos"][nome_campo] = campo_detalhado
+                    # Obtém os detalhes do campo
+                    campo_detalhado = self.obter_campo_por_id(campo_id)
                     
-                    # Adiciona ao mapeamento por ID
-                    resultado["campos_por_id"][str(campo_id)] = campo_detalhado
-                    
-                    # Agrupa por categoria
-                    if 'categoria' in campo_detalhado and campo_detalhado['categoria']:
-                        categoria = campo_detalhado['categoria']
+                    if campo_detalhado and 'nome_campo' in campo_detalhado:
+                        nome_campo = campo_detalhado['nome_campo']
                         
-                        if categoria not in resultado["campos_por_categoria"]:
-                            resultado["campos_por_categoria"][categoria] = []
+                        # Adiciona ao mapeamento por nome
+                        resultado["campos"][nome_campo] = campo_detalhado
+                        
+                        # Adiciona ao mapeamento por ID
+                        resultado["campos_por_id"][str(campo_id)] = campo_detalhado
+                        
+                        # Agrupa por categoria
+                        if 'categoria' in campo_detalhado and campo_detalhado['categoria']:
+                            categoria = campo_detalhado['categoria']
                             
-                        resultado["campos_por_categoria"][categoria].append(campo_detalhado)
+                            if categoria not in resultado["campos_por_categoria"]:
+                                resultado["campos_por_categoria"][categoria] = []
+                                
+                            resultado["campos_por_categoria"][categoria].append(campo_detalhado)
+                except (ValueError, TypeError) as e:
+                    logger.error(f"Erro ao processar campo: {e}")
+                    continue
             
             # Atualiza metadata
             resultado["metadata"]["total_campos_validos"] = len(resultado["campos"])

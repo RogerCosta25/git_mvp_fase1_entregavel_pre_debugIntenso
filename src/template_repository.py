@@ -7,8 +7,13 @@ import json
 import uuid
 import shutil
 from datetime import datetime
-from typing import List, Dict, Any, Optional, Tuple, BinaryIO
+from typing import List, Dict, Any, Optional, Tuple, BinaryIO, Union, cast
 import pathlib
+
+import sys
+# Adiciona o diretório pai ao path para importar módulos
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import config
 
 from src.exceptions import (
     TemplateNaoEncontradoError, 
@@ -104,6 +109,34 @@ class TemplateRepository:
             VersaoNaoEncontradaError: Se a versão especificada não for encontrada.
         """
         raise NotImplementedError("Método não implementado")
+    
+    def load(self) -> Any:
+        """
+        Carrega um template do repositório.
+        
+        Returns:
+            Objeto Document do python-docx.
+        
+        Raises:
+            TemplateNaoEncontradoError: Se o template não for encontrado.
+        """
+        raise NotImplementedError("Método não implementado")
+    
+    def save(self, documento: Any, output_name: Optional[str] = None) -> str:
+        """
+        Salva um documento processado.
+        
+        Args:
+            documento: Documento processado.
+            output_name: Nome do arquivo de saída (opcional).
+            
+        Returns:
+            Caminho do arquivo salvo.
+        
+        Raises:
+            ArmazenamentoError: Se ocorrer um erro ao salvar o documento.
+        """
+        raise NotImplementedError("Método não implementado")
 
 
 class FileSystemTemplateRepository(TemplateRepository):
@@ -111,15 +144,17 @@ class FileSystemTemplateRepository(TemplateRepository):
     Implementação do repositório de templates que armazena arquivos no sistema de arquivos.
     """
     
-    def __init__(self, base_dir: str, max_file_size_mb: int = 10):
+    def __init__(self, base_dir: Optional[str] = None, template_path: Optional[str] = None, max_file_size_mb: int = 10):
         """
         Inicializa o repositório de templates no sistema de arquivos.
         
         Args:
             base_dir: Diretório base onde os templates serão armazenados.
+            template_path: Caminho direto para um arquivo de template específico.
             max_file_size_mb: Tamanho máximo do arquivo em MB.
         """
-        self.base_dir = os.path.abspath(base_dir)
+        self.template_path = template_path
+        self.base_dir = os.path.abspath(base_dir) if base_dir else os.getcwd()
         self.templates_dir = os.path.join(self.base_dir, "templates")
         self.metadata_dir = os.path.join(self.base_dir, "metadata")
         self.max_file_size = max_file_size_mb * 1024 * 1024  # Convertendo para bytes
@@ -132,9 +167,10 @@ class FileSystemTemplateRepository(TemplateRepository):
         ]
         
         # Cria diretórios se não existirem
-        os.makedirs(self.templates_dir, exist_ok=True)
-        os.makedirs(self.metadata_dir, exist_ok=True)
-        logger.info(f"Repositório de templates inicializado em: {self.base_dir}")
+        if base_dir:
+            os.makedirs(self.templates_dir, exist_ok=True)
+            os.makedirs(self.metadata_dir, exist_ok=True)
+            logger.info(f"Repositório de templates inicializado em: {self.base_dir}")
     
     def _validar_seguranca_caminho(self, caminho: str) -> None:
         """
@@ -146,6 +182,9 @@ class FileSystemTemplateRepository(TemplateRepository):
         Raises:
             SegurancaError: Se o caminho for considerado inseguro.
         """
+        if caminho is None:
+            raise SegurancaError("Caminho não pode ser None")
+            
         # Verificar se o caminho contém padrões inseguros
         for pattern in self._unsafe_patterns:
             if re.search(pattern, caminho):
@@ -323,15 +362,18 @@ class FileSystemTemplateRepository(TemplateRepository):
         """
         try:
             # Se a versão não foi especificada, obter a mais recente
-            if versao is None:
-                versao = self._obter_versao_mais_recente(identificador)
+            versao_atual = versao
+            if versao_atual is None:
+                versao_atual = self._obter_versao_mais_recente(identificador)
             
             # Validação para prevenir path traversal
             self._validar_seguranca_caminho(identificador)
-            self._validar_seguranca_caminho(versao)
+            # Garantimos que versao_atual não é None
+            versao_atual_str = str(versao_atual)
+            self._validar_seguranca_caminho(versao_atual_str)
             
             # Obtém o caminho do arquivo de template
-            caminho_template = self._obter_caminho_template(identificador, versao)
+            caminho_template = self._obter_caminho_template(identificador, versao_atual_str)
             
             # Verifica se o arquivo existe
             if not os.path.exists(caminho_template):
@@ -376,7 +418,7 @@ class FileSystemTemplateRepository(TemplateRepository):
             self._validar_template(nome, conteudo)
             
             # Prepara metadados
-            metadados_completos = metadados.copy() if metadados else {}
+            metadados_completos = {} if metadados is None else metadados.copy()
             
             # Verifica se é uma atualização de um template existente ou um novo template
             template_existente = None
@@ -388,6 +430,12 @@ class FileSystemTemplateRepository(TemplateRepository):
             if template_existente:
                 # É uma atualização, obtém o identificador existente
                 identificador = template_existente.get('identificador')
+                if identificador is None:
+                    # Fallback caso o identificador esteja ausente
+                    identificador = self._gerar_identificador()
+                else:
+                    identificador = str(identificador)
+                    
                 versoes_existentes = template_existente.get('versoes', [])
                 versao = self._gerar_versao()
                 
@@ -560,3 +608,64 @@ class FileSystemTemplateRepository(TemplateRepository):
         except Exception as e:
             logger.error(f"Erro ao obter metadados do template {identificador}: {str(e)}")
             raise TemplateNaoEncontradoError(f"Erro ao obter metadados: {str(e)}")
+    
+    def load(self) -> Any:
+        """
+        Carrega um template do caminho específico.
+        
+        Returns:
+            Objeto Document do python-docx.
+            
+        Raises:
+            TemplateNaoEncontradoError: Se o template não for encontrado.
+        """
+        from docx import Document
+        
+        if not self.template_path:
+            raise TemplateNaoEncontradoError("Caminho do template não especificado")
+            
+        if not os.path.exists(self.template_path):
+            raise TemplateNaoEncontradoError(f"Template não encontrado: {self.template_path}")
+            
+        try:
+            return Document(self.template_path)
+        except Exception as e:
+            logger.error(f"Erro ao carregar template: {str(e)}")
+            raise TemplateNaoEncontradoError(f"Erro ao carregar template: {str(e)}")
+    
+    def save(self, documento: Any, output_name: Optional[str] = None) -> str:
+        """
+        Salva um documento processado.
+        
+        Args:
+            documento: Documento processado.
+            output_name: Nome do arquivo de saída (opcional).
+            
+        Returns:
+            Caminho do arquivo salvo.
+            
+        Raises:
+            ArmazenamentoError: Se ocorrer um erro ao salvar o documento.
+        """
+        try:
+            if output_name:
+                output_path = output_name
+            else:
+                # Se não especificado, gera um nome baseado no template original
+                template_nome = os.path.basename(self.template_path) if self.template_path else "documento"
+                nome_base, ext = os.path.splitext(template_nome)
+                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                output_path = f"{nome_base}_{timestamp}{ext}"
+                
+                # Verifica se é para salvar em um diretório específico
+                if hasattr(config, 'OUTPUT_DIR') and config.OUTPUT_DIR:
+                    os.makedirs(config.OUTPUT_DIR, exist_ok=True)
+                    output_path = os.path.join(config.OUTPUT_DIR, output_path)
+            
+            # Salva o documento
+            documento.save(output_path)
+            logger.info(f"Documento salvo em: {output_path}")
+            return output_path
+        except Exception as e:
+            logger.error(f"Erro ao salvar documento: {str(e)}")
+            raise ArmazenamentoError(f"Erro ao salvar documento: {str(e)}")
