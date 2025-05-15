@@ -1,0 +1,42 @@
+
+Count Name
+----- ----
+   12 Campo obrigatório ausente: 'texto_personalizado_data_aviso'
+   10 Campo obrigatório ausente: 'data_aviso_base_calculo'
+    8 Campo obrigatório ausente: 'meses_ano_termino_topicos_decimo_terceiro'
+    4 Campo obrigatório ausente: 'lista_periodos_anos_decimo_terceiro_anual'
+    4 Campo obrigatório ausente: 'temas_com_reflexo_atualizada_decimo_terceiro_anual'
+    2 Campo obrigatório ausente: 'temas_pedidos_atualizada_gestante'
+    2 Campo obrigatório ausente: 'temas_com_reflexo_atualizada_ferias_anuais'
+    2 Campo obrigatório ausente: 'temas_com_reflexo_atualizada_acumulo_funcao'
+    2 Campo obrigatório ausente: 'numero_nulidade_estabilidade'
+    2 Campo obrigatório ausente: 'lista_periodos_anos_ferias_anuais'
+    2 As seguintes seções estão no mapeamento, mas não foram encontradas no documento:
+      ['acumulo_funcao']
+    2 Campo obrigatório ausente: 'descricao_atualizada_condicao_insalubre_insalubridade'
+    2 Campo obrigatório ausente: 'descricao_atualizada_atividades_extras_acumulo_funcao'
+    2 Campo obrigatório ausente: 'descricao_atualizada_atividades_contratadas_acumulo_funcao'
+    2 Campo condicional 'motivo_rescisao' NÃO está presente nos dados
+    2 Campo condicional 'dias_aviso_previo_base_calculo' NÃO está presente nos dados
+    2 Campo condicional 'calcular_insalubridade' NÃO está presente nos dados
+    2 Campo condicional 'calcular_horas_extras' NÃO está presente nos dados
+    2 Os seguintes campos não foram encontrados nos dados: ano_data_termino_base_calculo, aviso_previo_
+      insalubridade, data_aviso_base_calculo,
+      descricao_atualizada_atividades_contratadas_acumulo_funcao,
+      descricao_atualizada_atividades_extras_acumulo_funcao,
+      descricao_atualizada_condicao_insalubre_insalubridade, descricao_atualizada_escala_trabalho,
+      ferias_terco_ insalubridade, fgts_ insalubridade, informacoes_cliente_personalizado,
+      lista_periodos_anos_decimo_terceiro_anual, lista_periodos_anos_ferias_anuais,
+      meses_ano_termino_topicos_decimo_terceiro, multa_fgts_40_ insalubridade,
+      numero_nulidade_estabilidade, temas_com_reflexo_atualizada_acumulo_funcao,
+      temas_com_reflexo_atualizada_decimo_terceiro_anual, temas_com_reflexo_atualizada_ferias_anuais,
+      temas_pedidos_atualizada_gestante, texto_personalizado_data_aviso, total_por_escrito
+    2 Os seguintes campos OBRIGATÓRIOS não foram fornecidos: data_aviso_base_calculo,
+      descricao_atualizada_atividades_contratadas_acumulo_funcao,
+      descricao_atualizada_atividades_extras_acumulo_funcao,
+      descricao_atualizada_condicao_insalubre_insalubridade, lista_periodos_anos_decimo_terceiro_anual,
+      lista_periodos_anos_ferias_anuais, meses_ano_termino_topicos_decimo_terceiro,
+      numero_nulidade_estabilidade, temas_com_reflexo_atualizada_acumulo_funcao,
+      temas_com_reflexo_atualizada_decimo_terceiro_anual, temas_com_reflexo_atualizada_ferias_anuais,
+      temas_pedidos_atualizada_gestante, texto_personalizado_data_aviso
+

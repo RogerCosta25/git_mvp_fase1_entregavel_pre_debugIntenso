@@ -1,0 +1,17 @@
+
+Count Name
+----- ----
+    2 data_aviso_base_calculo
+    2 descricao_atualizada_atividades_contratadas_acumulo_funcao
+    2 descricao_atualizada_atividades_extras_acumulo_funcao
+    2 descricao_atualizada_condicao_insalubre_insalubridade
+    2 lista_periodos_anos_decimo_terceiro_anual
+    2 lista_periodos_anos_ferias_anuais
+    2 meses_ano_termino_topicos_decimo_terceiro
+    2 numero_nulidade_estabilidade
+    2 temas_com_reflexo_atualizada_acumulo_funcao
+    2 temas_com_reflexo_atualizada_decimo_terceiro_anual
+    2 temas_com_reflexo_atualizada_ferias_anuais
+    2 temas_pedidos_atualizada_gestante
+    2 texto_personalizado_data_aviso
+

@@ -1,0 +1,8 @@
+
+Count Name
+----- ----
+    2 calcular_horas_extras
+    2 calcular_insalubridade
+    2 dias_aviso_previo_base_calculo
+    2 motivo_rescisao
+

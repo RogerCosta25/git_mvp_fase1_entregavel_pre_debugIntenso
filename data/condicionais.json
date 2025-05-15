@@ -1,0 +1,50 @@
+{
+    "versao": "1.0",
+    "regras": {
+        "s1": {
+            "categoria": "ESTRUTURA_SEMPRE_ATIVA",
+            "descricao": "Cabeçalho padrão da petição",
+            "identificador": "cabecalho"
+        },
+        "s2": {
+            "categoria": "ESTRUTURA_SEMPRE_ATIVA",
+            "descricao": "Qualificação das partes",
+            "identificador": "qualificacao"
+        },
+        "s3": {
+            "categoria": "ESTRUTURA_CONDICIONAL_SIMPLES",
+            "condicao": "calcular_horas_extras == 'Sim'",
+            "descricao": "Seção de horas extras",
+            "identificador": "HORAS_EXTRAS"
+        },
+        "s4": {
+            "categoria": "ESTRUTURA_CONDICIONAL_SIMPLES",
+            "condicao": "motivo_rescisao == 'demissão sem justa causa'",
+            "descricao": "Seção de verbas rescisórias",
+            "identificador": "VERBAS_RESCISORIAS"
+        },
+        "s5": {
+            "categoria": "ESTRUTURA_CONDICIONAL_SIMPLES",
+            "condicao": "dias_aviso_previo_base_calculo == '30 dias'",
+            "descricao": "Seção de aviso prévio",
+            "identificador": "aviso_previo"
+        },
+        "s6": {
+            "categoria": "ESTRUTURA_CONDICIONAL_SIMPLES",
+            "condicao": "calcular_acumulo_funcao == 'Sim'",
+            "descricao": "Seção de acúmulo de função",
+            "identificador": "acumulo_funcao"
+        },
+        "s7": {
+            "categoria": "ESTRUTURA_CONDICIONAL_SIMPLES",
+            "condicao": "calcular_insalubridade == 'Sim'",
+            "descricao": "Seção de insalubridade",
+            "identificador": "INSALUBRIDADE"
+        },
+        "s8": {
+            "categoria": "ESTRUTURA_SEMPRE_ATIVA",
+            "descricao": "Pedidos e encerramento",
+            "identificador": "pedidos"
+        }
+    }
+}

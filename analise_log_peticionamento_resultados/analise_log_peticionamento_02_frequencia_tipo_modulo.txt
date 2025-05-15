@@ -1,0 +1,5 @@
+
+Count ErrorType ModuleName
+----- --------- ----------
+   68 WARNING   peticionamento
+

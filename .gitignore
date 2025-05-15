@@ -1,0 +1,55 @@
+# Ambiente Virtual Python
+venv/
+*/venv/
+.venv/
+*/.venv/
+ENV/
+*/ENV/
+env/
+*/env/
+ENV.bak/
+env.bak/
+
+# Arquivos de Cache Python
+__pycache__/
+*.py[cod]
+$py.class 
+# Nota: Escapado o $ aqui para PowerShell
+
+# Arquivos de Log (se você não quiser versioná-los)
+logs/
+*.log
+debug.json
+# Se quiser versionar um log específico, adicione uma exceção:
+# !logs/exemplo_importante.log
+
+# Arquivos de Saída (gerados pelo seu programa)
+output/
+*.docx
+# Exceto talvez um template de exemplo se você quiser versioná-lo
+# !output/template_exemplo_gerado.docx
+
+# Arquivos de Relatórios de Teste/Coverage/Debug
+reports/
+.coverage
+htmlcov/
+pytest_cache/
+.pytest_cache/
+allure-results/
+allure-report/
+*.html # Cuidado para não ignorar HTMLs que você quer versionar
+
+# Arquivos de IDE/Editor
+.vscode/
+.idea/
+*.suo
+*.user
+*.DS_Store
+
+# Arquivos de backup
+*.bak
+*.swp
+*~
+
+# Arquivos de snapshot de debug (se não quiser versionar)
+# snapshots/ # Se você criar a pasta snapshots dentro de logs, já está coberto

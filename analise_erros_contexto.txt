@@ -1,0 +1,318 @@
+
+  logs\peticionamento.txt:291:2025-05-15 07:06:25,707 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [1]
+  logs\peticionamento.txt:292:2025-05-15 07:06:25,708 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(65, 99)]
+> logs\peticionamento.txt:293:2025-05-15 07:06:25,709 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'texto_personalizado_data_aviso'
+  logs\peticionamento.txt:294:2025-05-15 07:06:25,710 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:295:2025-05-15 07:06:25,710 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 2 runs
+  logs\peticionamento.txt:376:2025-05-15 07:06:25,739 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:377:2025-05-15 07:06:25,739 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(93, 127)]
+> logs\peticionamento.txt:378:2025-05-15 07:06:25,741 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'texto_personalizado_data_aviso'
+  logs\peticionamento.txt:379:2025-05-15 07:06:25,741 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:380:2025-05-15 07:06:25,741 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{cargo_funcao}}' (campo: 'cargo_funcao')
+  logs\peticionamento.txt:492:2025-05-15 07:06:25,775 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:493:2025-05-15 07:06:25,776 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(157, 191)]
+> logs\peticionamento.txt:494:2025-05-15 07:06:25,777 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'texto_personalizado_data_aviso'
+  logs\peticionamento.txt:495:2025-05-15 07:06:25,778 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:496:2025-05-15 07:06:25,778 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{cargo_funcao}}' (campo: 'cargo_funcao')
+  logs\peticionamento.txt:535:2025-05-15 07:06:25,791 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:536:2025-05-15 07:06:25,791 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(50, 95)]
+> logs\peticionamento.txt:537:2025-05-15 07:06:25,792 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'meses_ano_termino_topicos_decimo_terceiro'
+  logs\peticionamento.txt:538:2025-05-15 07:06:25,793 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:539:2025-05-15 07:06:25,793 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 3 runs
+  logs\peticionamento.txt:553:2025-05-15 07:06:25,795 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0, 1, 2]
+  logs\peticionamento.txt:554:2025-05-15 07:06:25,795 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(28, 30), (0, 41), (0, 3)]
+> logs\peticionamento.txt:555:2025-05-15 07:06:25,796 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'meses_ano_termino_topicos_decimo_terceiro'
+  logs\peticionamento.txt:556:2025-05-15 07:06:25,796 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 3 runs
+  logs\peticionamento.txt:557:2025-05-15 07:06:25,797 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 1 runs
+  logs\peticionamento.txt:647:2025-05-15 07:06:25,830 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [1]
+  logs\peticionamento.txt:648:2025-05-15 07:06:25,830 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(61, 95)]
+> logs\peticionamento.txt:649:2025-05-15 07:06:25,831 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'texto_personalizado_data_aviso'
+  logs\peticionamento.txt:650:2025-05-15 07:06:25,832 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:651:2025-05-15 07:06:25,832 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 2 runs
+  logs\peticionamento.txt:661:2025-05-15 07:06:25,834 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [1]
+  logs\peticionamento.txt:662:2025-05-15 07:06:25,834 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(35, 89)]
+> logs\peticionamento.txt:663:2025-05-15 07:06:25,835 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'temas_com_reflexo_atualizada_decimo_terceiro_anual'
+  logs\peticionamento.txt:664:2025-05-15 07:06:25,835 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:665:2025-05-15 07:06:25,836 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 1 runs
+  logs\peticionamento.txt:673:2025-05-15 07:06:25,837 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:674:2025-05-15 07:06:25,837 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(0, 45)]
+> logs\peticionamento.txt:675:2025-05-15 07:06:25,839 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'lista_periodos_anos_decimo_terceiro_anual'
+  logs\peticionamento.txt:676:2025-05-15 07:06:25,839 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:677:2025-05-15 07:06:25,840 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 1 runs
+  logs\peticionamento.txt:705:2025-05-15 07:06:25,847 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [1]
+  logs\peticionamento.txt:706:2025-05-15 07:06:25,847 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(8, 54)]
+> logs\peticionamento.txt:707:2025-05-15 07:06:25,849 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'temas_com_reflexo_atualizada_ferias_anuais'
+  logs\peticionamento.txt:708:2025-05-15 07:06:25,849 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:709:2025-05-15 07:06:25,850 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 1 runs
+  logs\peticionamento.txt:737:2025-05-15 07:06:25,859 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:738:2025-05-15 07:06:25,860 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(100, 162)]
+> logs\peticionamento.txt:739:2025-05-15 07:06:25,862 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'descricao_atualizada_atividades_contratadas_acumulo_funcao'
+  logs\peticionamento.txt:740:2025-05-15 07:06:25,862 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:741:2025-05-15 07:06:25,862 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{descricao_atualizada_atividades_extras_acumulo_funcao}}' (campo: 'descricao_atualizada_atividades_extras_acumulo_funcao')
+  logs\peticionamento.txt:748:2025-05-15 07:06:25,864 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [2]
+  logs\peticionamento.txt:749:2025-05-15 07:06:25,864 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(91, 148)]
+> logs\peticionamento.txt:750:2025-05-15 07:06:25,866 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'descricao_atualizada_atividades_extras_acumulo_funcao'
+  logs\peticionamento.txt:751:2025-05-15 07:06:25,866 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:752:2025-05-15 07:06:25,866 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 1 runs
+  logs\peticionamento.txt:799:2025-05-15 07:06:25,881 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:800:2025-05-15 07:06:25,881 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(203, 250)]
+> logs\peticionamento.txt:801:2025-05-15 07:06:25,883 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'temas_com_reflexo_atualizada_acumulo_funcao'
+  logs\peticionamento.txt:802:2025-05-15 07:06:25,883 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:803:2025-05-15 07:06:25,883 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{texto_personalizado_fgts_acumulo_funcao}}' (campo: 'texto_personalizado_fgts_acumulo_funcao')
+  logs\peticionamento.txt:912:2025-05-15 07:06:25,906 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [1]
+  logs\peticionamento.txt:913:2025-05-15 07:06:25,906 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(15, 72)]
+> logs\peticionamento.txt:914:2025-05-15 07:06:25,907 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'descricao_atualizada_condicao_insalubre_insalubridade'
+  logs\peticionamento.txt:915:2025-05-15 07:06:25,908 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:916:2025-05-15 07:06:25,908 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 1 runs
+  logs\peticionamento.txt:1024:2025-05-15 07:06:25,934 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [1]
+  logs\peticionamento.txt:1025:2025-05-15 07:06:25,934 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(1, 28)]
+> logs\peticionamento.txt:1026:2025-05-15 07:06:25,935 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'data_aviso_base_calculo'
+  logs\peticionamento.txt:1027:2025-05-15 07:06:25,935 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:1028:2025-05-15 07:06:25,935 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 2 runs
+  logs\peticionamento.txt:1079:2025-05-15 07:06:25,949 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:1080:2025-05-15 07:06:25,949 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(107, 134)]
+> logs\peticionamento.txt:1081:2025-05-15 07:06:25,951 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'data_aviso_base_calculo'
+  logs\peticionamento.txt:1082:2025-05-15 07:06:25,951 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:1083:2025-05-15 07:06:25,951 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 3 runs
+  logs\peticionamento.txt:1285:2025-05-15 07:06:25,996 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:1286:2025-05-15 07:06:25,996 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(36, 63)]
+> logs\peticionamento.txt:1287:2025-05-15 07:06:25,998 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'data_aviso_base_calculo'
+  logs\peticionamento.txt:1288:2025-05-15 07:06:25,998 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:1289:2025-05-15 07:06:25,998 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 1 runs
+  logs\peticionamento.txt:1344:2025-05-15 07:06:26,010 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [2]
+  logs\peticionamento.txt:1345:2025-05-15 07:06:26,010 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(0, 27)]
+> logs\peticionamento.txt:1346:2025-05-15 07:06:26,011 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'data_aviso_base_calculo'
+  logs\peticionamento.txt:1347:2025-05-15 07:06:26,011 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:1348:2025-05-15 07:06:26,012 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 5 runs
+  logs\peticionamento.txt:1685:2025-05-15 07:06:26,087 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [1]
+  logs\peticionamento.txt:1686:2025-05-15 07:06:26,087 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(61, 95)]
+> logs\peticionamento.txt:1687:2025-05-15 07:06:26,088 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'texto_personalizado_data_aviso'
+  logs\peticionamento.txt:1688:2025-05-15 07:06:26,088 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:1689:2025-05-15 07:06:26,088 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{cargo_funcao}}' (campo: 'cargo_funcao')
+  logs\peticionamento.txt:1740:2025-05-15 07:06:26,097 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [7]
+  logs\peticionamento.txt:1741:2025-05-15 07:06:26,097 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(18, 72)]
+> logs\peticionamento.txt:1742:2025-05-15 07:06:26,098 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'temas_com_reflexo_atualizada_decimo_terceiro_anual'
+  logs\peticionamento.txt:1743:2025-05-15 07:06:26,098 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:1744:2025-05-15 07:06:26,099 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 1 runs
+  logs\peticionamento.txt:1761:2025-05-15 07:06:26,102 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:1762:2025-05-15 07:06:26,102 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(50, 95)]
+> logs\peticionamento.txt:1763:2025-05-15 07:06:26,104 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'meses_ano_termino_topicos_decimo_terceiro'
+  logs\peticionamento.txt:1764:2025-05-15 07:06:26,104 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:1765:2025-05-15 07:06:26,104 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{decimo_terceiro_reflexo_total}}' (campo: 'decimo_terceiro_reflexo_total')
+  logs\peticionamento.txt:1784:2025-05-15 07:06:26,108 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:1785:2025-05-15 07:06:26,108 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(28, 73)]
+> logs\peticionamento.txt:1786:2025-05-15 07:06:26,109 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'meses_ano_termino_topicos_decimo_terceiro'
+  logs\peticionamento.txt:1787:2025-05-15 07:06:26,110 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:1788:2025-05-15 07:06:26,110 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{ferias_terco_reflexo_total}}' (campo: 'ferias_terco_reflexo_total')
+  logs\peticionamento.txt:1928:2025-05-15 07:06:26,141 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [1]
+  logs\peticionamento.txt:1929:2025-05-15 07:06:26,141 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(61, 95)]
+> logs\peticionamento.txt:1930:2025-05-15 07:06:26,143 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'texto_personalizado_data_aviso'
+  logs\peticionamento.txt:1931:2025-05-15 07:06:26,143 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:1932:2025-05-15 07:06:26,144 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{fgts_total_dos_pedidos}}' (campo: 'fgts_total_dos_pedidos')
+  logs\peticionamento.txt:1978:2025-05-15 07:06:26,156 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:1979:2025-05-15 07:06:26,156 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(0, 45)]
+> logs\peticionamento.txt:1980:2025-05-15 07:06:26,157 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'lista_periodos_anos_decimo_terceiro_anual'
+  logs\peticionamento.txt:1981:2025-05-15 07:06:26,157 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:1982:2025-05-15 07:06:26,158 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 1 runs
+  logs\peticionamento.txt:1996:2025-05-15 07:06:26,163 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:1997:2025-05-15 07:06:26,163 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(0, 37)]
+> logs\peticionamento.txt:1998:2025-05-15 07:06:26,165 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'lista_periodos_anos_ferias_anuais'
+  logs\peticionamento.txt:1999:2025-05-15 07:06:26,165 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:2000:2025-05-15 07:06:26,166 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 1 runs
+  logs\peticionamento.txt:2368:2025-05-15 07:06:26,286 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [2]
+  logs\peticionamento.txt:2369:2025-05-15 07:06:26,287 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(43, 80)]
+> logs\peticionamento.txt:2370:2025-05-15 07:06:26,288 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'temas_pedidos_atualizada_gestante'
+  logs\peticionamento.txt:2371:2025-05-15 07:06:26,289 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:2372:2025-05-15 07:06:26,289 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{data_aviso_base_calculo}}' (campo: 'data_aviso_base_calculo')
+  logs\peticionamento.txt:2382:2025-05-15 07:06:26,292 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [2]
+  logs\peticionamento.txt:2383:2025-05-15 07:06:26,292 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(115, 142)]
+> logs\peticionamento.txt:2384:2025-05-15 07:06:26,294 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'data_aviso_base_calculo'
+  logs\peticionamento.txt:2385:2025-05-15 07:06:26,294 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:2386:2025-05-15 07:06:26,294 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{data_final_estabilidade_gestante}}' (campo: 'data_final_estabilidade_gestante')
+  logs\peticionamento.txt:2531:2025-05-15 07:06:26,341 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:2532:2025-05-15 07:06:26,341 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(31, 63)]
+> logs\peticionamento.txt:2533:2025-05-15 07:06:26,342 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'numero_nulidade_estabilidade'
+  logs\peticionamento.txt:2534:2025-05-15 07:06:26,343 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:2535:2025-05-15 07:06:26,343 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{liquidacao_art_292}}' (campo: 'liquidacao_art_292')
+  logs\peticionamento.txt:3071:2025-05-15 07:06:26,561 | INFO     | peticionamento | logger         .info                 | L142  | Seção 'VERBAS_RESCISORIAS' mapeada com 54 elementos
+  logs\peticionamento.txt:3072:2025-05-15 07:06:26,561 | INFO     | peticionamento | logger         .info                 | L142  |   → Seção 'VERBAS_RESCISORIAS' está INATIVA
+> logs\peticionamento.txt:3073:2025-05-15 07:06:26,562 | WARNING  | peticionamento | logger         .warning              | L143  |     Campo condicional 'motivo_rescisao' NÃO está presente nos dados
+  logs\peticionamento.txt:3074:2025-05-15 07:06:26,589 | INFO     | peticionamento | logger         .info                 | L142  | Seção 'INSALUBRIDADE' mapeada com 130 elementos
+  logs\peticionamento.txt:3075:2025-05-15 07:06:26,589 | INFO     | peticionamento | logger         .info                 | L142  |   → Seção 'INSALUBRIDADE' está INATIVA
+> logs\peticionamento.txt:3076:2025-05-15 07:06:26,589 | WARNING  | peticionamento | logger         .warning              | L143  |     Campo condicional 'calcular_insalubridade' NÃO está presente nos dados
+  logs\peticionamento.txt:3077:2025-05-15 07:06:26,590 | INFO     | peticionamento | logger         .info                 | L142  | Seção 'HORAS_EXTRAS' mapeada com 3 elementos
+  logs\peticionamento.txt:3078:2025-05-15 07:06:26,591 | INFO     | peticionamento | logger         .info                 | L142  |   → Seção 'HORAS_EXTRAS' está INATIVA
+> logs\peticionamento.txt:3079:2025-05-15 07:06:26,591 | WARNING  | peticionamento | logger         .warning              | L143  |     Campo condicional 'calcular_horas_extras' NÃO está presente nos dados
+  logs\peticionamento.txt:3080:2025-05-15 07:06:26,601 | INFO     | peticionamento | logger         .info                 | L142  | Seção 'aviso_previo' mapeada com 65 elementos
+  logs\peticionamento.txt:3081:2025-05-15 07:06:26,601 | INFO     | peticionamento | logger         .info                 | L142  |   → Seção 'aviso_previo' está INATIVA
+> logs\peticionamento.txt:3082:2025-05-15 07:06:26,602 | WARNING  | peticionamento | logger         .warning              | L143  |     Campo condicional 'dias_aviso_previo_base_calculo' NÃO está presente nos dados
+  logs\peticionamento.txt:3083:2025-05-15 07:06:26,602 | INFO     | peticionamento | logger         .info                 | L142  | Seções encontradas no documento: ['VERBAS_RESCISORIAS', 'INSALUBRIDADE', 'HORAS_EXTRAS', 'aviso_previo']
+  logs\peticionamento.txt:3084:2025-05-15 07:06:26,602 | INFO     | peticionamento | logger         .info                 | L142  | Seção 'VERBAS_RESCISORIAS': INATIVA
+  logs\peticionamento.txt:3608:2025-05-15 07:06:26,799 | INFO     | peticionamento | logger         .info                 | L142  | Campos substituídos: 61
+  logs\peticionamento.txt:3609:2025-05-15 07:06:26,799 | INFO     | peticionamento | logger         .info                 | L142  | Campos ausentes: 21
+> logs\peticionamento.txt:3610:2025-05-15 07:06:26,800 | WARNING  | peticionamento | logger         .warning              | L143  | Os seguintes campos não foram encontrados nos dados: ano_data_termino_base_calculo, aviso_previo_ insalubridade, data_aviso_base_calculo, descricao_atualizada_atividades_contratadas_acumulo_funcao, descricao_atualizada_atividades_extras_acumulo_funcao, descricao_atualizada_condicao_insalubre_insalubridade, descricao_atualizada_escala_trabalho, ferias_terco_ insalubridade, fgts_ insalubridade, informacoes_cliente_personalizado, lista_periodos_anos_decimo_terceiro_anual, lista_periodos_anos_ferias_anuais, meses_ano_termino_topicos_decimo_terceiro, multa_fgts_40_ insalubridade, numero_nulidade_estabilidade, temas_com_reflexo_atualizada_acumulo_funcao, temas_com_reflexo_atualizada_decimo_terceiro_anual, temas_com_reflexo_atualizada_ferias_anuais, temas_pedidos_atualizada_gestante, texto_personalizado_data_aviso, total_por_escrito
+> logs\peticionamento.txt:3611:2025-05-15 07:06:26,816 | WARNING  | peticionamento | logger         .warning              | L143  | Os seguintes campos OBRIGATÓRIOS não foram fornecidos: data_aviso_base_calculo, descricao_atualizada_atividades_contratadas_acumulo_funcao, descricao_atualizada_atividades_extras_acumulo_funcao, descricao_atualizada_condicao_insalubre_insalubridade, lista_periodos_anos_decimo_terceiro_anual, lista_periodos_anos_ferias_anuais, meses_ano_termino_topicos_decimo_terceiro, numero_nulidade_estabilidade, temas_com_reflexo_atualizada_acumulo_funcao, temas_com_reflexo_atualizada_decimo_terceiro_anual, temas_com_reflexo_atualizada_ferias_anuais, temas_pedidos_atualizada_gestante, texto_personalizado_data_aviso
+  logs\peticionamento.txt:3612:2025-05-15 07:06:26,817 | INFO     | peticionamento | logger         .info                 | L142  | Seções encontradas no documento: ['HORAS_EXTRAS', 'INSALUBRIDADE', 'VERBAS_RESCISORIAS', 'aviso_previo']
+  logs\peticionamento.txt:3613:2025-05-15 07:06:26,817 | INFO     | peticionamento | logger         .info                 | L142  | Seções ativas aplicadas: ['s1', 's2', 's4', 's8']
+> logs\peticionamento.txt:3614:2025-05-15 07:06:26,817 | WARNING  | peticionamento | logger         .warning              | L143  | As seguintes seções estão no mapeamento, mas não foram encontradas no documento: ['acumulo_funcao']
+  logs\peticionamento.txt:3615:2025-05-15 07:06:26,900 | INFO     | peticionamento | logger         .info                 | L142  | Documento processado salvo em: output\modelo_trabalhista_20250515_070624.docx
+  logs\peticionamento.txt:3616:2025-05-15 07:06:26,900 | INFO     | peticionamento | logger         .info                 | L142  | Estatísticas do processamento: {'campos_encontrados': 82, 'campos_substituidos': 61, 'campos_ausentes': 21, 'campos_obrigatorios_ausentes': 13, 'secoes_encontradas': 4, 'secoes_ativas': 4, 'tempo_processamento': '1.295 segundos'}
+  logs\peticionamento.txt:3908:2025-05-15 09:08:17,738 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [1]
+  logs\peticionamento.txt:3909:2025-05-15 09:08:17,738 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(65, 99)]
+> logs\peticionamento.txt:3910:2025-05-15 09:08:17,739 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'texto_personalizado_data_aviso'
+  logs\peticionamento.txt:3911:2025-05-15 09:08:17,739 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:3912:2025-05-15 09:08:17,739 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 2 runs
+  logs\peticionamento.txt:3993:2025-05-15 09:08:17,754 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:3994:2025-05-15 09:08:17,754 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(93, 127)]
+> logs\peticionamento.txt:3995:2025-05-15 09:08:17,755 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'texto_personalizado_data_aviso'
+  logs\peticionamento.txt:3996:2025-05-15 09:08:17,755 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:3997:2025-05-15 09:08:17,756 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{cargo_funcao}}' (campo: 'cargo_funcao')
+  logs\peticionamento.txt:4109:2025-05-15 09:08:17,777 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:4110:2025-05-15 09:08:17,777 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(157, 191)]
+> logs\peticionamento.txt:4111:2025-05-15 09:08:17,778 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'texto_personalizado_data_aviso'
+  logs\peticionamento.txt:4112:2025-05-15 09:08:17,779 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:4113:2025-05-15 09:08:17,779 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{cargo_funcao}}' (campo: 'cargo_funcao')
+  logs\peticionamento.txt:4152:2025-05-15 09:08:17,786 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:4153:2025-05-15 09:08:17,786 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(50, 95)]
+> logs\peticionamento.txt:4154:2025-05-15 09:08:17,787 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'meses_ano_termino_topicos_decimo_terceiro'
+  logs\peticionamento.txt:4155:2025-05-15 09:08:17,787 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:4156:2025-05-15 09:08:17,787 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 3 runs
+  logs\peticionamento.txt:4170:2025-05-15 09:08:17,789 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0, 1, 2]
+  logs\peticionamento.txt:4171:2025-05-15 09:08:17,789 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(28, 30), (0, 41), (0, 3)]
+> logs\peticionamento.txt:4172:2025-05-15 09:08:17,790 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'meses_ano_termino_topicos_decimo_terceiro'
+  logs\peticionamento.txt:4173:2025-05-15 09:08:17,790 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 3 runs
+  logs\peticionamento.txt:4174:2025-05-15 09:08:17,790 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 1 runs
+  logs\peticionamento.txt:4264:2025-05-15 09:08:17,806 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [1]
+  logs\peticionamento.txt:4265:2025-05-15 09:08:17,806 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(61, 95)]
+> logs\peticionamento.txt:4266:2025-05-15 09:08:17,807 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'texto_personalizado_data_aviso'
+  logs\peticionamento.txt:4267:2025-05-15 09:08:17,807 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:4268:2025-05-15 09:08:17,808 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 2 runs
+  logs\peticionamento.txt:4278:2025-05-15 09:08:17,809 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [1]
+  logs\peticionamento.txt:4279:2025-05-15 09:08:17,809 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(35, 89)]
+> logs\peticionamento.txt:4280:2025-05-15 09:08:17,810 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'temas_com_reflexo_atualizada_decimo_terceiro_anual'
+  logs\peticionamento.txt:4281:2025-05-15 09:08:17,810 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:4282:2025-05-15 09:08:17,810 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 1 runs
+  logs\peticionamento.txt:4290:2025-05-15 09:08:17,811 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:4291:2025-05-15 09:08:17,811 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(0, 45)]
+> logs\peticionamento.txt:4292:2025-05-15 09:08:17,812 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'lista_periodos_anos_decimo_terceiro_anual'
+  logs\peticionamento.txt:4293:2025-05-15 09:08:17,813 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:4294:2025-05-15 09:08:17,813 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 1 runs
+  logs\peticionamento.txt:4322:2025-05-15 09:08:17,817 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [1]
+  logs\peticionamento.txt:4323:2025-05-15 09:08:17,817 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(8, 54)]
+> logs\peticionamento.txt:4324:2025-05-15 09:08:17,818 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'temas_com_reflexo_atualizada_ferias_anuais'
+  logs\peticionamento.txt:4325:2025-05-15 09:08:17,818 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:4326:2025-05-15 09:08:17,818 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 1 runs
+  logs\peticionamento.txt:4354:2025-05-15 09:08:17,824 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:4355:2025-05-15 09:08:17,824 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(100, 162)]
+> logs\peticionamento.txt:4356:2025-05-15 09:08:17,825 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'descricao_atualizada_atividades_contratadas_acumulo_funcao'
+  logs\peticionamento.txt:4357:2025-05-15 09:08:17,825 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:4358:2025-05-15 09:08:17,825 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{descricao_atualizada_atividades_extras_acumulo_funcao}}' (campo: 'descricao_atualizada_atividades_extras_acumulo_funcao')
+  logs\peticionamento.txt:4365:2025-05-15 09:08:17,826 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [2]
+  logs\peticionamento.txt:4366:2025-05-15 09:08:17,826 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(91, 148)]
+> logs\peticionamento.txt:4367:2025-05-15 09:08:17,827 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'descricao_atualizada_atividades_extras_acumulo_funcao'
+  logs\peticionamento.txt:4368:2025-05-15 09:08:17,827 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:4369:2025-05-15 09:08:17,827 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 1 runs
+  logs\peticionamento.txt:4416:2025-05-15 09:08:17,835 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:4417:2025-05-15 09:08:17,836 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(203, 250)]
+> logs\peticionamento.txt:4418:2025-05-15 09:08:17,837 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'temas_com_reflexo_atualizada_acumulo_funcao'
+  logs\peticionamento.txt:4419:2025-05-15 09:08:17,837 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:4420:2025-05-15 09:08:17,838 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{texto_personalizado_fgts_acumulo_funcao}}' (campo: 'texto_personalizado_fgts_acumulo_funcao')
+  logs\peticionamento.txt:4529:2025-05-15 09:08:17,860 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [1]
+  logs\peticionamento.txt:4530:2025-05-15 09:08:17,860 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(15, 72)]
+> logs\peticionamento.txt:4531:2025-05-15 09:08:17,862 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'descricao_atualizada_condicao_insalubre_insalubridade'
+  logs\peticionamento.txt:4532:2025-05-15 09:08:17,862 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:4533:2025-05-15 09:08:17,862 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 1 runs
+  logs\peticionamento.txt:4641:2025-05-15 09:08:17,880 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [1]
+  logs\peticionamento.txt:4642:2025-05-15 09:08:17,881 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(1, 28)]
+> logs\peticionamento.txt:4643:2025-05-15 09:08:17,881 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'data_aviso_base_calculo'
+  logs\peticionamento.txt:4644:2025-05-15 09:08:17,882 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:4645:2025-05-15 09:08:17,882 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 2 runs
+  logs\peticionamento.txt:4696:2025-05-15 09:08:17,891 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:4697:2025-05-15 09:08:17,891 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(107, 134)]
+> logs\peticionamento.txt:4698:2025-05-15 09:08:17,892 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'data_aviso_base_calculo'
+  logs\peticionamento.txt:4699:2025-05-15 09:08:17,892 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:4700:2025-05-15 09:08:17,892 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 3 runs
+  logs\peticionamento.txt:4902:2025-05-15 09:08:17,927 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:4903:2025-05-15 09:08:17,927 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(36, 63)]
+> logs\peticionamento.txt:4904:2025-05-15 09:08:17,928 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'data_aviso_base_calculo'
+  logs\peticionamento.txt:4905:2025-05-15 09:08:17,929 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:4906:2025-05-15 09:08:17,929 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 1 runs
+  logs\peticionamento.txt:4961:2025-05-15 09:08:17,938 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [2]
+  logs\peticionamento.txt:4962:2025-05-15 09:08:17,938 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(0, 27)]
+> logs\peticionamento.txt:4963:2025-05-15 09:08:17,939 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'data_aviso_base_calculo'
+  logs\peticionamento.txt:4964:2025-05-15 09:08:17,939 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:4965:2025-05-15 09:08:17,939 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 5 runs
+  logs\peticionamento.txt:5302:2025-05-15 09:08:17,992 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [1]
+  logs\peticionamento.txt:5303:2025-05-15 09:08:17,992 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(61, 95)]
+> logs\peticionamento.txt:5304:2025-05-15 09:08:17,993 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'texto_personalizado_data_aviso'
+  logs\peticionamento.txt:5305:2025-05-15 09:08:17,993 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:5306:2025-05-15 09:08:17,994 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{cargo_funcao}}' (campo: 'cargo_funcao')
+  logs\peticionamento.txt:5357:2025-05-15 09:08:18,000 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [7]
+  logs\peticionamento.txt:5358:2025-05-15 09:08:18,001 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(18, 72)]
+> logs\peticionamento.txt:5359:2025-05-15 09:08:18,002 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'temas_com_reflexo_atualizada_decimo_terceiro_anual'
+  logs\peticionamento.txt:5360:2025-05-15 09:08:18,003 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:5361:2025-05-15 09:08:18,003 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 1 runs
+  logs\peticionamento.txt:5378:2025-05-15 09:08:18,006 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:5379:2025-05-15 09:08:18,006 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(50, 95)]
+> logs\peticionamento.txt:5380:2025-05-15 09:08:18,008 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'meses_ano_termino_topicos_decimo_terceiro'
+  logs\peticionamento.txt:5381:2025-05-15 09:08:18,009 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:5382:2025-05-15 09:08:18,009 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{decimo_terceiro_reflexo_total}}' (campo: 'decimo_terceiro_reflexo_total')
+  logs\peticionamento.txt:5401:2025-05-15 09:08:18,012 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:5402:2025-05-15 09:08:18,012 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(28, 73)]
+> logs\peticionamento.txt:5403:2025-05-15 09:08:18,013 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'meses_ano_termino_topicos_decimo_terceiro'
+  logs\peticionamento.txt:5404:2025-05-15 09:08:18,013 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:5405:2025-05-15 09:08:18,013 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{ferias_terco_reflexo_total}}' (campo: 'ferias_terco_reflexo_total')
+  logs\peticionamento.txt:5545:2025-05-15 09:08:18,040 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [1]
+  logs\peticionamento.txt:5546:2025-05-15 09:08:18,040 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(61, 95)]
+> logs\peticionamento.txt:5547:2025-05-15 09:08:18,041 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'texto_personalizado_data_aviso'
+  logs\peticionamento.txt:5548:2025-05-15 09:08:18,041 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:5549:2025-05-15 09:08:18,042 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{fgts_total_dos_pedidos}}' (campo: 'fgts_total_dos_pedidos')
+  logs\peticionamento.txt:5595:2025-05-15 09:08:18,049 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:5596:2025-05-15 09:08:18,049 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(0, 45)]
+> logs\peticionamento.txt:5597:2025-05-15 09:08:18,050 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'lista_periodos_anos_decimo_terceiro_anual'
+  logs\peticionamento.txt:5598:2025-05-15 09:08:18,050 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:5599:2025-05-15 09:08:18,050 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 1 runs
+  logs\peticionamento.txt:5613:2025-05-15 09:08:18,052 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:5614:2025-05-15 09:08:18,053 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(0, 37)]
+> logs\peticionamento.txt:5615:2025-05-15 09:08:18,054 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'lista_periodos_anos_ferias_anuais'
+  logs\peticionamento.txt:5616:2025-05-15 09:08:18,054 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:5617:2025-05-15 09:08:18,054 | DEBUG    | peticionamento | logger         .debug                | L141  | Verificando fragmentação em parágrafo com 1 runs
+  logs\peticionamento.txt:5985:2025-05-15 09:08:18,111 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [2]
+  logs\peticionamento.txt:5986:2025-05-15 09:08:18,112 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(43, 80)]
+> logs\peticionamento.txt:5987:2025-05-15 09:08:18,113 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'temas_pedidos_atualizada_gestante'
+  logs\peticionamento.txt:5988:2025-05-15 09:08:18,113 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:5989:2025-05-15 09:08:18,113 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{data_aviso_base_calculo}}' (campo: 'data_aviso_base_calculo')
+  logs\peticionamento.txt:5999:2025-05-15 09:08:18,114 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [2]
+  logs\peticionamento.txt:6000:2025-05-15 09:08:18,114 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(115, 142)]
+> logs\peticionamento.txt:6001:2025-05-15 09:08:18,115 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'data_aviso_base_calculo'
+  logs\peticionamento.txt:6002:2025-05-15 09:08:18,115 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:6003:2025-05-15 09:08:18,115 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{data_final_estabilidade_gestante}}' (campo: 'data_final_estabilidade_gestante')
+  logs\peticionamento.txt:6148:2025-05-15 09:08:18,139 | DEBUG    | peticionamento | logger         .debug                | L141  | Runs afetadas: [0]
+  logs\peticionamento.txt:6149:2025-05-15 09:08:18,139 | DEBUG    | peticionamento | logger         .debug                | L141  | Índices em runs: [(31, 63)]
+> logs\peticionamento.txt:6150:2025-05-15 09:08:18,140 | WARNING  | peticionamento | logger         .warning              | L143  | Campo obrigatório ausente: 'numero_nulidade_estabilidade'
+  logs\peticionamento.txt:6151:2025-05-15 09:08:18,141 | DEBUG    | peticionamento | logger         .debug                | L141  | Substituindo campo ausente em 1 runs
+  logs\peticionamento.txt:6152:2025-05-15 09:08:18,141 | DEBUG    | peticionamento | logger         .debug                | L141  | Placeholder fragmentado encontrado: '{{liquidacao_art_292}}' (campo: 'liquidacao_art_292')
+  logs\peticionamento.txt:6688:2025-05-15 09:08:18,294 | INFO     | peticionamento | logger         .info                 | L142  | Seção 'VERBAS_RESCISORIAS' mapeada com 54 elementos
+  logs\peticionamento.txt:6689:2025-05-15 09:08:18,295 | INFO     | peticionamento | logger         .info                 | L142  |   → Seção 'VERBAS_RESCISORIAS' está INATIVA
+> logs\peticionamento.txt:6690:2025-05-15 09:08:18,295 | WARNING  | peticionamento | logger         .warning              | L143  |     Campo condicional 'motivo_rescisao' NÃO está presente nos dados
+  logs\peticionamento.txt:6691:2025-05-15 09:08:18,312 | INFO     | peticionamento | logger         .info                 | L142  | Seção 'INSALUBRIDADE' mapeada com 130 elementos
+  logs\peticionamento.txt:6692:2025-05-15 09:08:18,312 | INFO     | peticionamento | logger         .info                 | L142  |   → Seção 'INSALUBRIDADE' está INATIVA
+> logs\peticionamento.txt:6693:2025-05-15 09:08:18,312 | WARNING  | peticionamento | logger         .warning              | L143  |     Campo condicional 'calcular_insalubridade' NÃO está presente nos dados
+  logs\peticionamento.txt:6694:2025-05-15 09:08:18,313 | INFO     | peticionamento | logger         .info                 | L142  | Seção 'HORAS_EXTRAS' mapeada com 3 elementos
+  logs\peticionamento.txt:6695:2025-05-15 09:08:18,313 | INFO     | peticionamento | logger         .info                 | L142  |   → Seção 'HORAS_EXTRAS' está INATIVA
+> logs\peticionamento.txt:6696:2025-05-15 09:08:18,313 | WARNING  | peticionamento | logger         .warning              | L143  |     Campo condicional 'calcular_horas_extras' NÃO está presente nos dados
+  logs\peticionamento.txt:6697:2025-05-15 09:08:18,320 | INFO     | peticionamento | logger         .info                 | L142  | Seção 'aviso_previo' mapeada com 65 elementos
+  logs\peticionamento.txt:6698:2025-05-15 09:08:18,321 | INFO     | peticionamento | logger         .info                 | L142  |   → Seção 'aviso_previo' está INATIVA
+> logs\peticionamento.txt:6699:2025-05-15 09:08:18,321 | WARNING  | peticionamento | logger         .warning              | L143  |     Campo condicional 'dias_aviso_previo_base_calculo' NÃO está presente nos dados
+  logs\peticionamento.txt:6700:2025-05-15 09:08:18,321 | INFO     | peticionamento | logger         .info                 | L142  | Seções encontradas no documento: ['VERBAS_RESCISORIAS', 'INSALUBRIDADE', 'HORAS_EXTRAS', 'aviso_previo']
+  logs\peticionamento.txt:6701:2025-05-15 09:08:18,321 | INFO     | peticionamento | logger         .info                 | L142  | Seção 'VERBAS_RESCISORIAS': INATIVA
+  logs\peticionamento.txt:7225:2025-05-15 09:08:18,430 | INFO     | peticionamento | logger         .info                 | L142  | Campos substituídos: 61
+  logs\peticionamento.txt:7226:2025-05-15 09:08:18,430 | INFO     | peticionamento | logger         .info                 | L142  | Campos ausentes: 21
+> logs\peticionamento.txt:7227:2025-05-15 09:08:18,430 | WARNING  | peticionamento | logger         .warning              | L143  | Os seguintes campos não foram encontrados nos dados: ano_data_termino_base_calculo, aviso_previo_ insalubridade, data_aviso_base_calculo, descricao_atualizada_atividades_contratadas_acumulo_funcao, descricao_atualizada_atividades_extras_acumulo_funcao, descricao_atualizada_condicao_insalubre_insalubridade, descricao_atualizada_escala_trabalho, ferias_terco_ insalubridade, fgts_ insalubridade, informacoes_cliente_personalizado, lista_periodos_anos_decimo_terceiro_anual, lista_periodos_anos_ferias_anuais, meses_ano_termino_topicos_decimo_terceiro, multa_fgts_40_ insalubridade, numero_nulidade_estabilidade, temas_com_reflexo_atualizada_acumulo_funcao, temas_com_reflexo_atualizada_decimo_terceiro_anual, temas_com_reflexo_atualizada_ferias_anuais, temas_pedidos_atualizada_gestante, texto_personalizado_data_aviso, total_por_escrito
+> logs\peticionamento.txt:7228:2025-05-15 09:08:18,443 | WARNING  | peticionamento | logger         .warning              | L143  | Os seguintes campos OBRIGATÓRIOS não foram fornecidos: data_aviso_base_calculo, descricao_atualizada_atividades_contratadas_acumulo_funcao, descricao_atualizada_atividades_extras_acumulo_funcao, descricao_atualizada_condicao_insalubre_insalubridade, lista_periodos_anos_decimo_terceiro_anual, lista_periodos_anos_ferias_anuais, meses_ano_termino_topicos_decimo_terceiro, numero_nulidade_estabilidade, temas_com_reflexo_atualizada_acumulo_funcao, temas_com_reflexo_atualizada_decimo_terceiro_anual, temas_com_reflexo_atualizada_ferias_anuais, temas_pedidos_atualizada_gestante, texto_personalizado_data_aviso
+  logs\peticionamento.txt:7229:2025-05-15 09:08:18,444 | INFO     | peticionamento | logger         .info                 | L142  | Seções encontradas no documento: ['HORAS_EXTRAS', 'INSALUBRIDADE', 'VERBAS_RESCISORIAS', 'aviso_previo']
+  logs\peticionamento.txt:7230:2025-05-15 09:08:18,444 | INFO     | peticionamento | logger         .info                 | L142  | Seções ativas aplicadas: ['s1', 's2', 's4', 's8']
+> logs\peticionamento.txt:7231:2025-05-15 09:08:18,444 | WARNING  | peticionamento | logger         .warning              | L143  | As seguintes seções estão no mapeamento, mas não foram encontradas no documento: ['acumulo_funcao']
+  logs\peticionamento.txt:7232:2025-05-15 09:08:18,503 | INFO     | peticionamento | logger         .info                 | L142  | Documento processado salvo em: output\modelo_trabalhista_20250515_090815.docx
+  logs\peticionamento.txt:7233:2025-05-15 09:08:18,503 | INFO     | peticionamento | logger         .info                 | L142  | Estatísticas do processamento: {'campos_encontrados': 82, 'campos_substituidos': 61, 'campos_ausentes': 21, 'campos_obrigatorios_ausentes': 13, 'secoes_encontradas': 4, 'secoes_ativas': 4, 'tempo_processamento': '0.822 segundos'}
+

@@ -1,0 +1,319 @@
+{
+  "campos": {
+    "nome_autor_completo": {
+      "campo_id": 101,
+      "nome_campo": "nome_autor_completo",
+      "categoria": "Qualificação",
+      "tipo_dado_programacao": "string",
+      "tipo_controle_interface": "texto",
+      "obrigatorio_quando_ativo": true,
+      "tamanho_maximo": 100,
+      "placeholder_texto": "Nome completo do autor"
+    },
+    "cpf_autor": {
+      "campo_id": 102,
+      "nome_campo": "cpf_autor",
+      "categoria": "Qualificação",
+      "tipo_dado_programacao": "string",
+      "tipo_controle_interface": "texto",
+      "obrigatorio_quando_ativo": true,
+      "regex_validacao": "^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$",
+      "mascara_formato": "000.000.000-00",
+      "tamanho_maximo": 14,
+      "placeholder_texto": "CPF do autor"
+    },
+    "nome_reu_1": {
+      "campo_id": 8,
+      "nome_campo": "nome_reu_1",
+      "categoria": "Qualificação",
+      "tipo_dado_programacao": "string",
+      "tipo_controle_interface": "texto",
+      "obrigatorio_quando_ativo": true,
+      "tamanho_maximo": 100,
+      "placeholder_texto": "Nome completo do réu principal"
+    },
+    "natureza_juridica_reu_1": {
+      "campo_id": 9,
+      "nome_campo": "natureza_juridica_reu_1",
+      "categoria": "Qualificação",
+      "tipo_dado_programacao": "string",
+      "tipo_controle_interface": "lista",
+      "obrigatorio_quando_ativo": true,
+      "opcoes_valores": "jurídica,física",
+      "valor_padrao": "jurídica",
+      "placeholder_texto": "Natureza jurídica do réu principal"
+    },
+    "cnpj_reu_1": {
+      "campo_id": 10,
+      "nome_campo": "cnpj_reu_1",
+      "categoria": "Qualificação",
+      "tipo_dado_programacao": "string",
+      "tipo_controle_interface": "texto",
+      "obrigatorio_quando_ativo": true,
+      "visivel_quando": "natureza_juridica_reu_1 == 'jurídica'",
+      "regex_validacao": "^\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}$",
+      "mascara_formato": "00.000.000/0000-00",
+      "tamanho_maximo": 18,
+      "placeholder_texto": "CNPJ do réu principal"
+    },
+    "cpf_reu_1": {
+      "campo_id": 19,
+      "nome_campo": "cpf_reu_1",
+      "categoria": "Qualificação",
+      "tipo_dado_programacao": "string",
+      "tipo_controle_interface": "texto",
+      "obrigatorio_quando_ativo": true,
+      "visivel_quando": "natureza_juridica_reu_1 == 'física'",
+      "regex_validacao": "^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$",
+      "mascara_formato": "000.000.000-00",
+      "tamanho_maximo": 14,
+      "placeholder_texto": "CPF do réu principal"
+    },
+    "complemento_reu_1": {
+      "campo_id": 13,
+      "nome_campo": "complemento_reu_1",
+      "categoria": "Qualificação",
+      "tipo_dado_programacao": "string",
+      "tipo_controle_interface": "texto",
+      "obrigatorio_quando_ativo": false,
+      "tamanho_maximo": 50,
+      "placeholder_texto": "Complemento do endereço do réu principal"
+    },
+    "nome_reu_2_terceira": {
+      "campo_id": 22,
+      "nome_campo": "nome_reu_2_terceira",
+      "categoria": "Qualificação",
+      "tipo_dado_programacao": "string",
+      "tipo_controle_interface": "texto",
+      "obrigatorio_quando_ativo": false,
+      "visivel_quando": "calcular_terceirizacao_base_calculo == 'Sim'",
+      "tamanho_maximo": 100,
+      "placeholder_texto": "Nome completo do réu secundário (empresa terceirizada)"
+    },
+    "cargo_funcao": {
+      "campo_id": 40,
+      "nome_campo": "cargo_funcao",
+      "categoria": "Dados Contratuais",
+      "tipo_dado_programacao": "string",
+      "tipo_controle_interface": "texto",
+      "obrigatorio_quando_ativo": true,
+      "tamanho_maximo": 100,
+      "placeholder_texto": "Cargo ou função exercida"
+    },
+    "data_inicio_base_calculo": {
+      "campo_id": 46,
+      "nome_campo": "data_inicio_base_calculo",
+      "categoria": "Dados Contratuais",
+      "tipo_dado_programacao": "data",
+      "tipo_controle_interface": "data",
+      "obrigatorio_quando_ativo": true,
+      "placeholder_texto": "Data de início do contrato"
+    },
+    "data_termino_base_calculo": {
+      "campo_id": 47,
+      "nome_campo": "data_termino_base_calculo",
+      "categoria": "Dados Contratuais",
+      "tipo_dado_programacao": "data",
+      "tipo_controle_interface": "data",
+      "obrigatorio_quando_ativo": true,
+      "placeholder_texto": "Data de término do contrato"
+    },
+    "salario_bruto_base_calculo": {
+      "campo_id": 48,
+      "nome_campo": "salario_bruto_base_calculo",
+      "categoria": "Dados Contratuais",
+      "tipo_dado_programacao": "decimal",
+      "tipo_controle_interface": "monetario",
+      "obrigatorio_quando_ativo": true,
+      "valor_minimo": "0",
+      "placeholder_texto": "Salário bruto"
+    },
+    "status_vinculo_empregaticio": {
+      "campo_id": 36,
+      "nome_campo": "status_vinculo_empregaticio",
+      "categoria": "Dados Contratuais",
+      "tipo_dado_programacao": "string",
+      "tipo_controle_interface": "lista",
+      "obrigatorio_quando_ativo": true,
+      "opcoes_valores": "reconhecido,não reconhecido,parcialmente reconhecido",
+      "valor_padrao": "reconhecido",
+      "placeholder_texto": "Status do vínculo empregatício"
+    },
+    "motivo_rescisao": {
+      "campo_id": 37,
+      "nome_campo": "motivo_rescisao",
+      "categoria": "Dados Contratuais",
+      "tipo_dado_programacao": "string",
+      "tipo_controle_interface": "lista",
+      "obrigatorio_quando_ativo": true,
+      "visivel_quando": "status_vinculo_empregaticio == 'reconhecido'",
+      "opcoes_valores": "voluntária,demissão sem justa causa,rescisão indireta",
+      "valor_padrao": "demissão sem justa causa",
+      "placeholder_texto": "Motivo da rescisão contratual"
+    },
+    "texto_personalizado_aviso_previo": {
+      "campo_id": 235,
+      "nome_campo": "texto_personalizado_aviso_previo",
+      "categoria": "Textos Personalizados",
+      "tipo_dado_programacao": "string",
+      "tipo_controle_interface": "textarea",
+      "obrigatorio_quando_ativo": false,
+      "visivel_quando": "reflexos_em_aviso_previo_base_calculo == 'Sim'",
+      "tamanho_maximo": 1000,
+      "placeholder_texto": "Texto personalizado sobre o aviso prévio"
+    },
+    "calcular_fgts_base_calculo": {
+      "campo_id": 56,
+      "nome_campo": "calcular_fgts_base_calculo",
+      "categoria": "Cálculos",
+      "tipo_dado_programacao": "string",
+      "tipo_controle_interface": "booleano",
+      "obrigatorio_quando_ativo": true,
+      "opcoes_valores": "Sim,Não",
+      "valor_padrao": "Sim",
+      "placeholder_texto": "Calcular FGTS"
+    },
+    "calcular_acumulo_funcao": {
+      "campo_id": 125,
+      "nome_campo": "calcular_acumulo_funcao",
+      "categoria": "Cálculos",
+      "tipo_dado_programacao": "string",
+      "tipo_controle_interface": "booleano",
+      "obrigatorio_quando_ativo": true,
+      "opcoes_valores": "Sim,Não",
+      "valor_padrao": "Não",
+      "placeholder_texto": "Calcular acúmulo de função"
+    },
+    "calcular_insalubridade": {
+      "campo_id": 142,
+      "nome_campo": "calcular_insalubridade",
+      "categoria": "Cálculos",
+      "tipo_dado_programacao": "string",
+      "tipo_controle_interface": "booleano",
+      "obrigatorio_quando_ativo": true,
+      "opcoes_valores": "Sim,Não",
+      "valor_padrao": "Não",
+      "placeholder_texto": "Calcular adicional de insalubridade"
+    },
+    "valor_causa_numerico": {
+      "campo_id": 246,
+      "nome_campo": "valor_causa_numerico",
+      "categoria": "ValorCausa",
+      "tipo_dado_programacao": "decimal",
+      "tipo_controle_interface": "monetario",
+      "obrigatorio_quando_ativo": true,
+      "valor_minimo": "0",
+      "placeholder_texto": "Valor da causa (numérico)"
+    },
+    "total_total_dos_pedidos": {
+      "campo_id": 507,
+      "nome_campo": "total_total_dos_pedidos",
+      "categoria": "ValorCausa",
+      "tipo_dado_programacao": "decimal",
+      "tipo_controle_interface": "monetario",
+      "obrigatorio_quando_ativo": false,
+      "calcular_quando": "True",
+      "formula_calculo": "sum([fgts_total_dos_pedidos or 0, multa_477_total_dos_pedidos or 0, multa_467_total_dos_pedidos or 0, decimo_terceiro_anual_total_dos_pedidos or 0, ferias_anuais_total_dos_pedidos or 0, acumulo_funcao_total_dos_pedidos or 0, seguro_desemprego_total_dos_pedidos or 0, insalubridade_total_dos_pedidos or 0, periculosidade_total_dos_pedidos or 0, gestante_total_dos_pedidos or 0, honorarios_sucumbenciais_total_dos_pedidos or 0])",
+      "placeholder_texto": "Total geral dos pedidos"
+    }
+  },
+  "campos_por_id": {
+    "8": {
+      "campo_id": 8,
+      "nome_campo": "nome_reu_1",
+      "categoria": "Qualificação",
+      "tipo_dado_programacao": "string",
+      "tipo_controle_interface": "texto",
+      "obrigatorio_quando_ativo": true,
+      "tamanho_maximo": 100,
+      "placeholder_texto": "Nome completo do réu principal"
+    },
+    "9": {
+      "campo_id": 9,
+      "nome_campo": "natureza_juridica_reu_1",
+      "categoria": "Qualificação",
+      "tipo_dado_programacao": "string",
+      "tipo_controle_interface": "lista",
+      "obrigatorio_quando_ativo": true,
+      "opcoes_valores": "jurídica,física",
+      "valor_padrao": "jurídica",
+      "placeholder_texto": "Natureza jurídica do réu principal"
+    },
+    "10": {
+      "campo_id": 10,
+      "nome_campo": "cnpj_reu_1",
+      "categoria": "Qualificação",
+      "tipo_dado_programacao": "string",
+      "tipo_controle_interface": "texto",
+      "obrigatorio_quando_ativo": true,
+      "visivel_quando": "natureza_juridica_reu_1 == 'jurídica'",
+      "regex_validacao": "^\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}$",
+      "mascara_formato": "00.000.000/0000-00",
+      "tamanho_maximo": 18,
+      "placeholder_texto": "CNPJ do réu principal"
+    }
+  },
+  "campos_por_categoria": {
+    "Qualificação": [
+      {
+        "campo_id": 101,
+        "nome_campo": "nome_autor_completo",
+        "categoria": "Qualificação",
+        "tipo_dado_programacao": "string",
+        "tipo_controle_interface": "texto",
+        "obrigatorio_quando_ativo": true,
+        "tamanho_maximo": 100,
+        "placeholder_texto": "Nome completo do autor"
+      },
+      {
+        "campo_id": 102,
+        "nome_campo": "cpf_autor",
+        "categoria": "Qualificação",
+        "tipo_dado_programacao": "string",
+        "tipo_controle_interface": "texto",
+        "obrigatorio_quando_ativo": true,
+        "regex_validacao": "^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$",
+        "mascara_formato": "000.000.000-00",
+        "tamanho_maximo": 14,
+        "placeholder_texto": "CPF do autor"
+      },
+      {
+        "campo_id": 8,
+        "nome_campo": "nome_reu_1",
+        "categoria": "Qualificação",
+        "tipo_dado_programacao": "string",
+        "tipo_controle_interface": "texto",
+        "obrigatorio_quando_ativo": true,
+        "tamanho_maximo": 100,
+        "placeholder_texto": "Nome completo do réu principal"
+      }
+    ],
+    "Dados Contratuais": [
+      {
+        "campo_id": 40,
+        "nome_campo": "cargo_funcao",
+        "categoria": "Dados Contratuais",
+        "tipo_dado_programacao": "string",
+        "tipo_controle_interface": "texto",
+        "obrigatorio_quando_ativo": true,
+        "tamanho_maximo": 100,
+        "placeholder_texto": "Cargo ou função exercida"
+      },
+      {
+        "campo_id": 46,
+        "nome_campo": "data_inicio_base_calculo",
+        "categoria": "Dados Contratuais",
+        "tipo_dado_programacao": "data",
+        "tipo_controle_interface": "data",
+        "obrigatorio_quando_ativo": true,
+        "placeholder_texto": "Data de início do contrato"
+      }
+    ]
+  },
+  "metadata": {
+    "total_campos": 25,
+    "total_campos_validos": 22,
+    "total_categorias": 5,
+    "versao_schema": "1.0"
+  }
+} 

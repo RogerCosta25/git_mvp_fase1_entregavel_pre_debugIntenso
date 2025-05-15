@@ -1,0 +1,21 @@
+﻿tipo_dado_id;nome_tipo;descricao;mascara_formato;formato_apresentacao
+1;integer;Tipo de dado: integer / Formato: número;;número
+2;string;Tipo de dado: string / Formato: texto;;texto
+3;string;Tipo de dado: string / Formato: personalizado do tipo: (xx) xxxxx-xxxx;(xx) xxxxx-xxxx;personalizado do tipo: (xx) xxxxx-xxxx
+4;string;Tipo de dado: string / Formato: Lista seleção (texto);;Lista seleção (texto)
+5;string;Tipo de dado: string / Formato: personalizado do tipo: xx.xxx.xxx/xxxx-xx;xx.xxx.xxx/xxxx-xx;personalizado do tipo: xx.xxx.xxx/xxxx-xx
+6;string;Tipo de dado: string / Formato: Geral;;Geral
+7;string;Tipo de dado: string / Formato: personalizado do tipo: xxxxx-xxx;xxxxx-xxx;personalizado do tipo: xxxxx-xxx
+8;string;Tipo de dado: string / Formato: personalizado do tipo: xxx.xxx.xxx-xx;xxx.xxx.xxx-xx;personalizado do tipo: xxx.xxx.xxx-xx
+9;string;Tipo de dado: string / Formato: personalizado do tipo: xx.xxx.xxx-xx;xx.xxx.xxx-xx;personalizado do tipo: xx.xxx.xxx-xx
+10;date;Tipo de dado: date / Formato: data formato dd/mm/aaaa;dd/mm/yyyy;data formato dd/mm/aaaa
+11;decimal;Tipo de dado: decimal / Formato: Contábil (BRL);#.##0,00;Contábil (BRL)
+12;string;Tipo de dado: string / Formato: personalizado do tipo: x,xx 'horas';x,xx 'horas';personalizado do tipo: x,xx 'horas'
+13;string;Tipo de dado: string / Formato: personalizado do tipo: xx 'dias';xx 'dias';personalizado do tipo: xx 'dias'
+14;string;Tipo de dado: string / Formato: personalizado do tipo: xx 'meses';xx 'meses';personalizado do tipo: xx 'meses'
+15;percentage;Tipo de dado: percentage / Formato: Lista seleção (número %);;Lista seleção (número %)
+16;percentage;Tipo de dado: percentage / Formato: Número Percentual (%);0%;Número Percentual (%)
+17;string;Tipo de dado: string / Formato: personalizado do tipo: xx 'parcelas';xx 'parcelas';personalizado do tipo: xx 'parcelas'
+18;string;Tipo de dado: string / Formato: personalizado do tipo: xx 'semanas';xx 'semanas';personalizado do tipo: xx 'semanas'
+19;string;Tipo de dado: string / Formato: personalizado do tipo: xx 'anos';xx 'anos';personalizado do tipo: xx 'anos'
+20;string;Tipo de dado: string / Formato: personalizado do tipo: X anos e Y meses;x anos e y meses;personalizado do tipo: X anos e Y meses

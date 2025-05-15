@@ -1,0 +1,25 @@
+
+Count Name
+----- ----
+    4 lista_periodos_anos_decimo_terceiro_anual
+    4 temas_pedidos_atualizada_gestante
+    4 data_aviso_base_calculo
+    4 descricao_atualizada_atividades_contratadas_acumulo_funcao
+    4 descricao_atualizada_atividades_extras_acumulo_funcao
+    4 descricao_atualizada_condicao_insalubre_insalubridade
+    4 temas_com_reflexo_atualizada_ferias_anuais
+    4 temas_com_reflexo_atualizada_decimo_terceiro_anual
+    4 temas_com_reflexo_atualizada_acumulo_funcao
+    4 numero_nulidade_estabilidade
+    4 texto_personalizado_data_aviso
+    4 lista_periodos_anos_ferias_anuais
+    4 meses_ano_termino_topicos_decimo_terceiro
+    2 ano_data_termino_base_calculo
+    2 informacoes_cliente_personalizado
+    2 fgts_ insalubridade
+    2 ferias_terco_ insalubridade
+    2 descricao_atualizada_escala_trabalho
+    2 aviso_previo_ insalubridade
+    2 multa_fgts_40_ insalubridade
+    2 total_por_escrito
+

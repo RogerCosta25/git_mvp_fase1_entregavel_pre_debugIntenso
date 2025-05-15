@@ -1,0 +1,39 @@
+2025-05-15 03:01:51,256 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar tabela campos_definicao.csv: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 03:01:51,256 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar tabelas do modelo relacional: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 03:01:51,256 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao inicializar adaptador do modelo relacional: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 03:01:51,268 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar definição de campos: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 03:43:49,004 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar tabela campos_definicao.csv: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 03:43:49,005 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar tabelas do modelo relacional: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 03:43:49,005 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao inicializar adaptador do modelo relacional: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 03:43:49,008 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar definição de campos: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 03:43:49,054 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao abrir o template: Document.__init__() missing 1 required positional argument: 'part'
+2025-05-15 03:43:49,054 | ERROR    | peticionamento | main           .main                 | L308  | Erro não tratado e crítico no sistema: Erro ao abrir o template: Document.__init__() missing 1 required positional argument: 'part'
+Traceback (most recent call last):
+TypeError: Document.__init__() missing 1 required positional argument: 'part'
+The above exception was the direct cause of the following exception:
+Traceback (most recent call last):
+    raise TemplateError(mensagem) from e
+src.exceptions.TemplateError: Erro ao abrir o template: Document.__init__() missing 1 required positional argument: 'part'
+2025-05-15 03:50:18,990 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar tabela campos_definicao.csv: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 03:50:18,990 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar tabelas do modelo relacional: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 03:50:18,990 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao inicializar adaptador do modelo relacional: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 03:50:18,992 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar definição de campos: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 03:50:19,017 | ERROR    | peticionamento | main           .main                 | L308  | Erro não tratado e crítico no sistema: name 'time' is not defined
+Traceback (most recent call last):
+NameError: name 'time' is not defined. Did you forget to import 'time'?
+2025-05-15 03:50:38,740 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar tabela campos_definicao.csv: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 03:50:38,740 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar tabelas do modelo relacional: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 03:50:38,740 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao inicializar adaptador do modelo relacional: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 03:50:38,756 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar definição de campos: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 04:05:25,083 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar tabela campos_definicao.csv: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 04:05:25,083 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar tabelas do modelo relacional: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 04:05:25,083 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao inicializar adaptador do modelo relacional: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 04:05:25,086 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar definição de campos: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 04:18:50,351 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar tabela campos_definicao.csv: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 04:18:50,351 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar tabelas do modelo relacional: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 04:18:50,351 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao inicializar adaptador do modelo relacional: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 04:18:50,353 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar definição de campos: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 04:20:58,349 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar tabela campos_definicao.csv: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 04:20:58,350 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar tabelas do modelo relacional: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 04:20:58,350 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao inicializar adaptador do modelo relacional: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
+2025-05-15 04:20:58,352 | ERROR    | peticionamento | logger         .error                | L144  | Erro ao carregar definição de campos: 'utf-8' codec can't decode byte 0xfa in position 264: invalid start byte
